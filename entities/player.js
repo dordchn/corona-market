@@ -11,6 +11,15 @@ class Player {
     this.speed = 120;
   }
 
+  getBoundingBox() {
+    return {
+      x: this.x,
+      y: this.y,
+      w: this.size,
+      h: this.size,
+    };
+  }
+
   update(dt, validator) {
     let newPos = null;
     if (keyboard.isRecentDown('ArrowUp')) {

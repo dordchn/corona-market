@@ -15,6 +15,7 @@ class Obstacle {
   }
 
   render(ctx) {
+    // todo: draw item from linear pattern resource
     ctx.beginPath();
     ctx.strokeStyle = '#000000';
     ctx.fillStyle = "#FFFFFF";

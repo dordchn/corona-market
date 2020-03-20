@@ -1,6 +1,7 @@
 import resources from './resources.js';
 import Player from './entities/player.js';
 import Obstacle from './entities/obstacle.js';
+import Item from './entities/item.js';
 import Seller from './entities/seller.js';
 import { boxCollides, boxContains } from './utils.js';
 
@@ -32,6 +33,11 @@ let game = {
 
     new Obstacle(934, 420, 30, 120), // Desk
   ],
+  items: [
+    new Item(40, 200, 'red'),
+    new Item(640, 480, 'yellow'),
+    new Item(700, 50, 'green'),
+  ],
   seller: new Seller(990, 480), // Seller
 };
 
@@ -46,6 +52,19 @@ resources.loadMultiple([
 
 function init() {
   floorPattern = ctx.createPattern(resources.get('res/floor.png'), 'repeat');
+  document.addEventListener('keydown', evt => {
+    let playerBB = game.player.getBoundingBox();
+    if (evt.key == ' ' && !evt.repeat) {
+      // Remove all items that overlap with player.
+      let i = 0;
+      while (i < game.items.length) {
+        if (boxCollides(playerBB, game.items[i].getBoundingBox())) {
+          game.items.splice(i, 1);
+        } 
+        i++;
+      }
+    }
+  });
 
   prevLoopTime = Date.now();
   mainLoop();
@@ -83,8 +102,14 @@ function render() {
 
   // Draw entities
   game.player.render(ctx);
+
   for (let obstacle of game.obstacles) {
     obstacle.render(ctx);
   }
+
+  for (let item of game.items) {
+    item.render(ctx);
+  }
+
   game.seller.render(ctx);
 }
