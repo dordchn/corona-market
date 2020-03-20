@@ -2,7 +2,7 @@ import resources from './resources.js';
 import Player from './entities/player.js';
 import Obstacle from './entities/obstacle.js';
 import Seller from './entities/seller.js';
-import {boxCollides} from './utils.js';
+import { boxCollides, boxContains } from './utils.js';
 
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
@@ -67,12 +67,13 @@ function update(dt) {
   game.player.update(dt, (boundingBox) => {
     let collides = false;
     for (let obstacle of game.obstacles) {
-      if (boxCollides(boundingBox, obstacle.getBoundingBox())){
+      if (boxCollides(boundingBox, obstacle.getBoundingBox())) {
         collides = true;
         break;
       }
     }
-    return !collides;
+    let inStore = boxContains({ x: 0, y: 0, w: canvas.width, h: canvas.height }, boundingBox);
+    return !collides && inStore;
   });
 }
 

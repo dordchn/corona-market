@@ -1,11 +1,19 @@
 
-function boxCollides(obj1, obj2) {
+function boxCollides(box1, box2) {
   return !(
-    obj1.x + obj1.w <= obj2.x ||
-    obj1.x > obj2.x + obj2.w ||
-    obj1.y + obj1.h <= obj2.y ||
-    obj1.y > obj2.y + obj2.h
+    box1.x + box1.w <= box2.x ||
+    box1.x > box2.x + box2.w ||
+    box1.y + box1.h <= box2.y ||
+    box1.y > box2.y + box2.h
   );
 }
 
-export { boxCollides };
+// Returns true if box1 completely contains in box2.
+function boxContains(box1, box2) {
+  return box2.x > box1.x &&
+    box2.y > box1.y &&
+    box2.x + box2.w <= box1.x + box1.w &&
+    box2.y + box2.h <= box1.y + box1.h;
+}
+
+export { boxCollides, boxContains };
