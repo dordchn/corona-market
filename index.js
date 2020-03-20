@@ -1,6 +1,8 @@
 import resources from './resources.js';
 import Player from './entities/player.js';
 import Obstacle from './entities/obstacle.js';
+import Seller from './entities/seller.js';
+import {boxCollides} from './utils.js';
 
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
@@ -8,23 +10,29 @@ const ctx = canvas.getContext('2d');
 let prevLoopTime;
 let floorPattern;
 let game = {
-  player: new Player(/*x=*/ 100, /*y=*/ 200, /*rotation=*/ 0),
+  player: new Player(/*x=*/ 140, /*y=*/ 530, /*rotation=*/ 0),
   obstacles: [
-    new Obstacle(22,22,980, 40), // top shelf
 
-    new Obstacle(22,82,40, 450), // left shelf
-    
-    // Inner shelves
-    new Obstacle(182,142,40, 390),
-    new Obstacle(302,142,40, 390),
-    new Obstacle(422,142,40, 390),
-    new Obstacle(542,142,40, 390),
-    new Obstacle(662,142,40, 390),
+    new Obstacle(80, 556, 120, 20), // Entrance
+    new Obstacle(844, 556, 120, 20), // Exit
 
-    new Obstacle(782,142,140, 390), // Freezer
+    new Obstacle(600, 50, 300, 100), // Freezer
+    new Obstacle(600, 220, 300, 40), // Shelf below freezer
+    new Obstacle(984, 0, 40, 370), // Right shelf
+    new Obstacle(480, 0, 40, 160),
 
-    new Obstacle(782,142,140, 390), // Door
+    // Bottom shelves
+    new Obstacle(360, 456, 40, 120),
+    new Obstacle(480, 336, 40, 240),
+    new Obstacle(600, 336, 40, 240),
+    new Obstacle(720, 336, 40, 240),
+
+    new Obstacle(0, 0, 40, 576), // Left shelf
+    new Obstacle(40, 0, 440, 80), // Top shelf
+
+    new Obstacle(934, 420, 30, 120), // Desk
   ],
+  seller: new Seller(990, 480), // Seller
 };
 
 resources.loadMultiple([
@@ -56,7 +64,16 @@ function mainLoop() {
 
 function update(dt) {
   // Update entities
-  game.player.update(dt);
+  game.player.update(dt, (boundingBox) => {
+    let collides = false;
+    for (let obstacle of game.obstacles) {
+      if (boxCollides(boundingBox, obstacle.getBoundingBox())){
+        collides = true;
+        break;
+      }
+    }
+    return !collides;
+  });
 }
 
 function render() {
@@ -68,4 +85,5 @@ function render() {
   for (let obstacle of game.obstacles) {
     obstacle.render(ctx);
   }
+  game.seller.render(ctx);
 }

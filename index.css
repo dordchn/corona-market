@@ -6,3 +6,21 @@ canvas {
   margin-top: 60px;
   border: 1px solid black;
 }
+
+.signs-container {
+  display: inline-block;
+  width: 1024px;
+  margin-top: 4px;
+  font-family: sans-serif;
+  font-size: 22px;
+}
+
+.entrance {
+  float: left;
+  margin-left: 94px;
+}
+
+.exit {
+  float: right;
+  margin-right: 102px;
+}

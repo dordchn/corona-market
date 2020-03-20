@@ -1,18 +1,24 @@
 
 class Obstacle {
   constructor(x, y, width, height, type) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
+    this.box = {
+      x: x,
+      y: y,
+      w: width,
+      h: height,
+    };
     this.type = type;
+  }
+
+  getBoundingBox() {
+    return this.box;
   }
 
   render(ctx) {
     ctx.beginPath();
     ctx.strokeStyle = '#000000';
     ctx.fillStyle = "#FFFFFF";
-    ctx.rect(this.x, this.y, this.width, this.height);
+    ctx.rect(this.box.x, this.box.y, this.box.w, this.box.h);
     ctx.fill();
     ctx.stroke();
     ctx.restore();

@@ -7,33 +7,38 @@ class Player {
     this.y = y;
     this.rotation = rotation;
     this.src = 'res/dude-stand.png';
-    this.speed = 100;
+    this.size = 40;
+    this.speed = 120;
   }
 
-  update(dt) {
-    let moving = false;
+  update(dt, validator) {
+    let newPos = null;
     if (keyboard.isRecentDown('ArrowUp')) {
-      this.y -= this.speed * dt;
-      this.rotation = 0;
-      moving = true;
+      newPos = { x: this.x, y: this.y - this.speed * dt, r: 0 };
     }
     if (keyboard.isRecentDown('ArrowDown')) {
-      this.y += this.speed * dt;
-      this.rotation = 180;
-      moving = true;
+      newPos = { x: this.x, y: this.y + this.speed * dt, r: 180 };
     }
     if (keyboard.isRecentDown('ArrowLeft')) {
-      this.x -= this.speed * dt;
-      this.rotation = 270;
-      moving = true;
+      newPos = { x: this.x - this.speed * dt, y: this.y, r: 270 };
     }
     if (keyboard.isRecentDown('ArrowRight')) {
-      this.x += this.speed * dt;
-      this.rotation = 90;
-      moving = true;
+      newPos = { x: this.x + this.speed * dt, y: this.y, r: 90 };
     }
-    if (moving) {
+    if (newPos) {
       this.res = (Date.now() % 600 < 300) ? 'res/dude-walk1.png' : 'res/dude-walk2.png';
+      this.rotation = newPos.r;
+
+      let newBoundingBox = {
+        x: newPos.x - this.size / 2,
+        y: newPos.y - this.size / 2,
+        w: this.size,
+        h: this.size,
+      };
+      if (validator(newBoundingBox)) {
+        this.x = newPos.x;
+        this.y = newPos.y;
+      }
     } else {
       this.res = 'res/dude-stand.png';
     }
