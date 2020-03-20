@@ -1,17 +1,20 @@
-const canvas = document.querySelector("canvas");
-const ctx = canvas.getContext("2d");
+import resources from './resources.js';
+
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
 
 let prevLoopTime;
 let floorPattern;
 
-const floorImage = new Image();
-floorImage.onload = function () {
+resources.loadMultiple([
+  'res/floor.png',
+  'res/dude-stand.png',
+]).then(() => {
   init();
-};
-floorImage.src = 'res/floor.png';
+});
 
 function init() {
-  floorPattern = ctx.createPattern(floorImage, 'repeat');
+  floorPattern = ctx.createPattern(resources.get('res/floor.png'), 'repeat');
 
   prevLoopTime = Date.now();
   mainLoop();
@@ -24,7 +27,7 @@ function mainLoop() {
   update(dt);
   render();
 
-  lastTime = now;
+  prevLoopTime = now;
   window.requestAnimationFrame(mainLoop);
 };
 
@@ -38,3 +41,4 @@ function render() {
 
   // Draw entities
 }
+  
