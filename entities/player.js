@@ -33,19 +33,19 @@ class Player {
       moving = true;
     }
     if (moving) {
-      this.res = (Date.now() % 800 < 400) ? 'res/dude-walk1.png' : 'res/dude-walk2.png';
+      this.res = (Date.now() % 600 < 300) ? 'res/dude-walk1.png' : 'res/dude-walk2.png';
     } else {
       this.res = 'res/dude-stand.png';
     }
   }
 
   render(context) {
+    context.save();
     context.translate(this.x, this.y);
     context.rotate(this.rotation * Math.PI / 180);
     let img = resources.get(this.res);
     context.drawImage(img, -img.width / 2, -img.height / 2);
-    context.rotate(-this.rotation * Math.PI / 180);
-    context.translate(-this.x, -this.y);
+    context.restore();
   }
 }
 
