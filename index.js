@@ -1,20 +1,20 @@
 import resources from './resources.js';
-import keyboard from './keyboard.js';
-
-const PLAYER_SPEED = 60; // px / s
+import Player from './entities/player.js';
 
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
 let prevLoopTime;
 let floorPattern;
-let gameState = {
-  player: { x: 100, y: 200, res: 'res/dude-stand.png' }
+let game = {
+  player: new Player(/*x=*/ 100, /*y=*/ 200, /*rotation=*/ 0)
 };
 
 resources.loadMultiple([
   'res/floor.png',
   'res/dude-stand.png',
+  'res/dude-walk1.png',
+  'res/dude-walk2.png',
 ]).then(() => {
   init();
 });
@@ -39,24 +39,13 @@ function mainLoop() {
 
 function update(dt) {
   // Update entities
-  if (keyboard.isDown('ArrowUp')) {
-    gameState.player.y -= PLAYER_SPEED * dt;
-  }
-  if (keyboard.isDown('ArrowDown')) {
-    gameState.player.y += PLAYER_SPEED * dt;
-  }
-  if (keyboard.isDown('ArrowLeft')) {
-    gameState.player.x -= PLAYER_SPEED * dt;
-  }
-  if (keyboard.isDown('ArrowRight')) {
-    gameState.player.x += PLAYER_SPEED * dt;
-  }
+  game.player.update(dt);
 }
 
 function render() {
   ctx.fillStyle = floorPattern;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.drawImage(resources.get(gameState.player.res), gameState.player.x, gameState.player.y);
   // Draw entities
+  game.player.render(ctx);
 }
