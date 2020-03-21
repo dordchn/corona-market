@@ -5,23 +5,22 @@
 </head>
 
 <body>
-  <div>
-    <div class="button_container">
+  <div class="container">
+    <div class="main-screen">
       <div id="start_btn">
         Start
       </div>
     </div>
-    <canvas width="1024" height="576"></canvas>
+    <x-game></x-game>
   </div>
-  <div class="signs-container">
-    <span class="entrance">Entrance</span>
-    <span class="exit">Exit</span>
-  </div>
+
   <div class="credits">
     <div>Create by <a href="https://www.linkedin.com/in/dor-cohen-ab55a463/">Dor Cohen</a></div>
     <div>Illustrated by ?</div>
     <div>Sound effects & music obtained from <a href="https://www.zapsplat.com">zapsplat</a></div>
-</div>
+  </div>
+
+  <script type="module" src="game.js"></script>
   <script type="module" src="index.js"></script>
 </body>
 

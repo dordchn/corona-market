@@ -7,9 +7,7 @@ import Seller from '../entities/seller.js';
 export default {
   player: new Player(/*x=*/ 140, /*y=*/ 530, /*rotation=*/ 0),
   obstacles: [
-
     new Obstacle(80, 556, 120, 20), // Entrance
-    new Obstacle(844, 556, 120, 20), // Exit
 
     new Obstacle(600, 50, 300, 100), // Freezer
     new Obstacle(600, 220, 300, 40), // Shelf below freezer
@@ -27,6 +25,7 @@ export default {
 
     new Obstacle(934, 420, 30, 120), // Desk
   ],
+  exit: new Obstacle(844, 556, 120, 20), // Exit
   items: [
     new Item(40, 200, 'red'),
     new Item(640, 480, 'yellow'),

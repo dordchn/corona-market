@@ -1,14 +1,53 @@
 import resources from './utils/resources.js';
 import { boxCollides, boxContains } from './utils/collision.js';
 
-class Game {
+
+class Game extends HTMLElement {
   constructor() {
-    this.canvas = document.querySelector('canvas');
+    super();
+    this.shadowDOM = this.attachShadow({ mode: "open" });
+    this.shadowDOM.innerHTML = `
+      <style>
+        .container {
+          display: inline-block;
+          width: 1024px;
+        }
+        canvas {
+          border: 1px solid black;
+        }
+        .signs-container {
+          visibility: hidden;
+          margin-top: 4px;
+          font-size: 22px;
+        }
+        .entrance {
+          float: left;
+          margin-left: 94px;
+        }
+        .exit {
+          float: right;
+          margin-right: 102px;
+        }
+      </style>
+      <div class="container">
+        <canvas width="1024" height="576"></canvas>
+        <div class="signs-container">
+          <span class="entrance">Entrance</span>
+          <span class="exit">Exit</span>
+        </div>
+      </div>
+    `
+      ;
+
+    this.canvas = this.shadowDOM.querySelector('canvas');
     this.ctx = this.canvas.getContext('2d');
     this.ready = false;
+    this.active = false;
     this.level = null;
     this.floorPattern = null;
     this.prevLoopTime = null;
+
+    this.requestId = null;
   }
 
   async init() {
@@ -17,6 +56,7 @@ class Game {
       'res/dude-stand.png',
       'res/dude-walk1.png',
       'res/dude-walk2.png',
+      'res/seller-forget.png',
     ]);
 
     this.floorPattern = this.ctx.createPattern(resources.get('res/floor.png'), 'repeat');
@@ -31,14 +71,20 @@ class Game {
       }
     });
 
-    this.ctx.fillStyle = this.floorPattern;
-    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    this.reset();
 
     this.ready = true;
   }
 
+  reset() {
+    this.ctx.fillStyle = this.floorPattern;
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
   loadLevel(level) {
     this.level = level;
+    this.active = true;
+    this.shadowDOM.querySelector('.signs-container').style.visibility = 'visible';
 
     this.prevLoopTime = Date.now();
     this.mainLoop();
@@ -46,13 +92,16 @@ class Game {
 
   // The main this.level loop
   mainLoop() {
+    if (!this.active) {
+      return;
+    }
     let now = Date.now();
     let dt = (now - this.prevLoopTime) / 1000.0;
     this.update(dt);
     this.render();
 
     this.prevLoopTime = now;
-    window.requestAnimationFrame(() => this.mainLoop());
+    this.requestId = window.requestAnimationFrame(() => this.mainLoop());
   };
 
   update(dt) {
@@ -72,11 +121,22 @@ class Game {
       customer.update(dt);
     }
 
-    // Test interaction
+    // Test loss
     for (let customer of this.level.customers) {
       if (boxCollides(this.level.player.getBoundingBox(), customer.getBoundingBox())) {
-        this.endGame();
+        this.stop();
+        this.dispatchEvent(new CustomEvent('loss'));
         break;
+      }
+    }
+
+    // Test win
+    if (boxCollides(this.level.player.getBoundingBox(), this.level.exit.getBoundingBox())) {
+      if (this.level.items.length == 0) {
+        this.stop();
+        this.dispatchEvent(new CustomEvent('win'));
+      } else {
+        this.level.seller.popup('res/seller-forget.png', 30);
       }
     }
   }
@@ -91,6 +151,7 @@ class Game {
     for (let obstacle of this.level.obstacles) {
       obstacle.render(this.ctx);
     }
+    this.level.exit.render(this.ctx);
 
     for (let customer of this.level.customers) {
       customer.render(this.ctx);
@@ -103,9 +164,9 @@ class Game {
     this.level.seller.render(this.ctx);
   }
 
-  endGame() {
-    alert("Game over!");
+  stop() {
+    this.active = false;
   }
 }
 
-export default Game;
+customElements.define('x-game', Game);

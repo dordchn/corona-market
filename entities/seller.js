@@ -1,8 +1,19 @@
+import resources from '../utils/resources.js';
 
 class Seller {
   constructor(x, y) {
     this.x = x;
     this.y = y;
+    this.popupImg = null;
+    this.popupOffset = 0;
+  }
+
+  popup(res, offsetX = 0) {
+    if (this.popupImg) {
+      return;
+    }
+    this.popupImg = resources.get(res);
+    this.popupOffset = offsetX;
   }
 
   render(ctx) {
@@ -14,6 +25,10 @@ class Seller {
     ctx.fill();
     // ctx.stroke();
     ctx.restore();
+    if (this.popupImg) {
+      ctx.drawImage(this.popupImg, this.x - this.popupImg.width + this.popupOffset, this.y - this.popupImg.height - 10);
+      this.popupImg = null;
+    }
   }
 }
 

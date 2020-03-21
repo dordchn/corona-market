@@ -5,46 +5,31 @@ body {
   font-family: sans-serif;
 }
 
-canvas {
-  border: 1px solid black;
-}
-
-.signs-container {
+.container {
   display: inline-block;
-  width: 1024px;
-  margin-top: 4px;
-  font-size: 22px;
+  position: relative;
 }
 
-.entrance {
-  float: left;
-  margin-left: 94px;
-}
-
-.exit {
-  float: right;
-  margin-right: 102px;
-}
-
-.button_container {
-  position: absolute;
-  left: 50%;
-  top: 220px;
+x-game {
+  display: inline-block;
 }
 
 #start_btn {
-  left: -50%;
-  position: relative;
+  --width: 260px;
+  position: absolute;
+  width: 260px;
+  padding-bottom: 8px;
+  top: 200px;
+  left: calc(50% - var(--width) / 2);
+
   background-color: #CEF8;
   border: 1px solid black;
   border-radius: 20px;
-  padding: 0px 34px 8px 34px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   color: #333;
   font-family: cursive;
   font-size: 70px;
   cursor: pointer;
-  transition: opacity .5s;
 }
 
 .credits {
