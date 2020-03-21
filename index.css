@@ -44,7 +44,7 @@ canvas {
   font-family: cursive;
   font-size: 70px;
   cursor: pointer;
-  transition: opacity 1s;
+  transition: opacity .5s;
 }
 
 .credits {
