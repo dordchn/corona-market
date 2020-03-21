@@ -91,12 +91,18 @@ function init() {
 }
 
 function loadLevel(level) {
-  document.querySelector('#start_btn').style.display = 'none';
-  bgAudio.play();
-  game = level;
+  let startButton = document.querySelector('#start_btn');
+  startButton.style.opacity = '0';
+  setTimeout(() => {
+    startButton.style.display = 'none';
+    startButton.style.opacity = '0';
 
-  prevLoopTime = Date.now();
-  mainLoop();
+    bgAudio.play();
+    game = level;
+
+    prevLoopTime = Date.now();
+    mainLoop();
+  }, 1000);
 }
 
 // The main game loop
