@@ -1,5 +1,5 @@
-import keyboard from '../keyboard.js';
-import resources from '../resources.js';
+import keyboard from '../utils/keyboard.js';
+import resources from '../utils/resources.js';
 
 class Player {
   constructor(x, y, rotation) {

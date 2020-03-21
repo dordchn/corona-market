@@ -1,10 +1,11 @@
-import resources from './resources.js';
+import resources from './utils/resources.js';
+import { boxCollides, boxContains } from './utils/collision.js';
+
 import Player from './entities/player.js';
 import Obstacle from './entities/obstacle.js';
 import Item from './entities/item.js';
 import Customer from './entities/customer.js';
 import Seller from './entities/seller.js';
-import { boxCollides, boxContains } from './utils.js';
 
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
