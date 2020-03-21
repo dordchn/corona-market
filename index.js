@@ -12,7 +12,8 @@ const ctx = canvas.getContext('2d');
 
 let prevLoopTime;
 let floorPattern;
-let game = {
+let game = {};
+let level1 = {
   player: new Player(/*x=*/ 140, /*y=*/ 530, /*rotation=*/ 0),
   obstacles: [
 
@@ -55,7 +56,7 @@ let game = {
   seller: new Seller(990, 480), // Seller
 };
 
-resources.loadMultiple([
+resources.loadImages([
   'res/floor.png',
   'res/dude-stand.png',
   'res/dude-walk1.png',
@@ -64,9 +65,15 @@ resources.loadMultiple([
   init();
 });
 
+let bgAudio = new Audio('res/background.mp3');
+bgAudio.volume = 0.1;
+bgAudio.loop = true;
+
 function init() {
   floorPattern = ctx.createPattern(resources.get('res/floor.png'), 'repeat');
+
   document.addEventListener('keydown', evt => {
+    if (!game.player) return;
     let playerBB = game.player.getBoundingBox();
     if (evt.key == ' ' && !evt.repeat) {
       game.items = game.items.filter(item => {
@@ -74,6 +81,19 @@ function init() {
       });
     }
   });
+
+  ctx.fillStyle = floorPattern;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  document.querySelector('#start_btn').addEventListener('click', () => {
+    loadLevel(level1);
+  });
+}
+
+function loadLevel(level) {
+  document.querySelector('#start_btn').style.display = 'none';
+  bgAudio.play();
+  game = level;
 
   prevLoopTime = Date.now();
   mainLoop();

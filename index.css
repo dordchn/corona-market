@@ -1,9 +1,11 @@
 body {
+  position: relative;
   text-align: center;
+  margin-top: 60px;
+  font-family: sans-serif;
 }
 
 canvas {
-  margin-top: 60px;
   border: 1px solid black;
 }
 
@@ -11,7 +13,6 @@ canvas {
   display: inline-block;
   width: 1024px;
   margin-top: 4px;
-  font-family: sans-serif;
   font-size: 22px;
 }
 
@@ -23,4 +24,33 @@ canvas {
 .exit {
   float: right;
   margin-right: 102px;
+}
+
+.button_container {
+  position: absolute;
+  left: 50%;
+  top: 220px;
+}
+
+#start_btn {
+  left: -50%;
+  position: relative;
+  background-color: #CEF8;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 0px 34px 8px 34px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: #333;
+  font-family: cursive;
+  font-size: 70px;
+  cursor: pointer;
+}
+
+.credits {
+  font-size: 16px;
+  color: #666;
+}
+
+a {
+  color: #000;
 }

@@ -4,7 +4,7 @@ class Resources {
     this.cache = {};
   }
 
-  async load(path) {
+  async loadImage(path) {
     if (path in this.cache) {
       return Promise.resolve(this.cache[path]);
     }
@@ -18,13 +18,13 @@ class Resources {
     });
   }
 
-  async loadMultiple(paths) {
-    return Promise.all(paths.map(path => this.load(path)));
+  async loadImages(paths) {
+    return Promise.all(paths.map(path => this.loadImage(path)));
   }
 
   get(path) {
     return this.cache[path];
   }
-}
 
+}
 export default new Resources();
