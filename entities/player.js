@@ -8,13 +8,13 @@ class Player {
     this.rotation = rotation;
     this.src = 'res/dude-stand.png';
     this.size = 40;
-    this.speed = 120;
+    this.speed = 140;
   }
 
   getBoundingBox() {
     return {
-      x: this.x,
-      y: this.y,
+      x: this.x - this.size / 2,
+      y: this.y - this.size / 2,
       w: this.size,
       h: this.size,
     };

@@ -2,6 +2,7 @@ import resources from './resources.js';
 import Player from './entities/player.js';
 import Obstacle from './entities/obstacle.js';
 import Item from './entities/item.js';
+import Customer from './entities/customer.js';
 import Seller from './entities/seller.js';
 import { boxCollides, boxContains } from './utils.js';
 
@@ -38,6 +39,18 @@ let game = {
     new Item(640, 480, 'yellow'),
     new Item(700, 50, 'green'),
   ],
+  customers: [
+    new Customer([
+      { x: 560, y: 25 },
+      { x: 940, y: 25 },
+      { x: 940, y: 180 },
+      { x: 560, y: 180 },
+    ], ''),
+    new Customer([
+      { x: 560, y: 360 },
+      { x: 560, y: 550 },
+    ], ''),
+  ],
   seller: new Seller(990, 480), // Seller
 };
 
@@ -55,14 +68,9 @@ function init() {
   document.addEventListener('keydown', evt => {
     let playerBB = game.player.getBoundingBox();
     if (evt.key == ' ' && !evt.repeat) {
-      // Remove all items that overlap with player.
-      let i = 0;
-      while (i < game.items.length) {
-        if (boxCollides(playerBB, game.items[i].getBoundingBox())) {
-          game.items.splice(i, 1);
-        } 
-        i++;
-      }
+      game.items = game.items.filter(item => {
+        return !boxCollides(playerBB, item.getBoundingBox());
+      });
     }
   });
 
@@ -83,7 +91,7 @@ function mainLoop() {
 
 function update(dt) {
   // Update entities
-  game.player.update(dt, (boundingBox) => {
+  game.player.update(dt, (boundingBox) => { // validator
     let collides = false;
     for (let obstacle of game.obstacles) {
       if (boxCollides(boundingBox, obstacle.getBoundingBox())) {
@@ -94,6 +102,17 @@ function update(dt) {
     let inStore = boxContains({ x: 0, y: 0, w: canvas.width, h: canvas.height }, boundingBox);
     return !collides && inStore;
   });
+  for (let customer of game.customers) {
+    customer.update(dt);
+  }
+
+  // Test interaction
+  for (let customer of game.customers) {
+    if (boxCollides(game.player.getBoundingBox(), customer.getBoundingBox())) {
+      endGame();
+      break;
+    }
+  }
 }
 
 function render() {
@@ -107,9 +126,17 @@ function render() {
     obstacle.render(ctx);
   }
 
+  for (let customer of game.customers) {
+    customer.render(ctx);
+  }
+
   for (let item of game.items) {
     item.render(ctx);
   }
 
   game.seller.render(ctx);
+}
+
+function endGame() {
+  alert("Game over!");
 }

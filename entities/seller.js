@@ -6,6 +6,7 @@ class Seller {
   }
 
   render(ctx) {
+    // todo: add communication popup ("Don't you forget something?" "Pay first")
     ctx.beginPath();
     ctx.strokeStyle = '#000000';
     ctx.fillStyle = "#663300";
