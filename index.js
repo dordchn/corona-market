@@ -1,25 +1,26 @@
 import level1 from './levels/level1.js';
-
-let bgAudio = new Audio('res/background.mp3');
-bgAudio.volume = 0.1;
-bgAudio.loop = true;
+import sounds from './utils/sounds.js';
 
 let game = document.querySelector('x-game');
 game.init();
 
 game.addEventListener('win', () => {
   console.log('win!');
+  sounds.stopBackground();
 });
 
-game.addEventListener('loss', () => {
+game.addEventListener('loss', async () => {
   console.log('loss :(');
+  sounds.stopBackground();
+  await sounds.play('res/cough-boy9.mp3');
 });
 
-document.querySelector('#start_btn').addEventListener('click', () => {
+document.querySelector('#start_btn').addEventListener('click',async () => {
   if (game.ready) {
     let startButton = document.querySelector('#start_btn');
-    startButton.style.display = 'none';  
-    bgAudio.play();
+    startButton.style.display = 'none';
     game.loadLevel(level1);
+    await sounds.play('res/cough-boy9.mp3');
+    sounds.playBackground();
   }
 });
