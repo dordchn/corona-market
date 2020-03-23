@@ -82,8 +82,8 @@ class Game extends HTMLElement {
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
-  loadLevel(level) {
-    this.level = level;
+  loadLevel(levelBuilder) {
+    this.level = levelBuilder();
     this.active = true;
     this.shadowDOM.querySelector('.signs-container').style.visibility = 'visible';
 
