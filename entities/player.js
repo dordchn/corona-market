@@ -22,18 +22,25 @@ class Player {
 
   update(dt, validator) {
     let newPos = null;
-    if (keyboard.isRecentDown('ArrowUp')) {
+    let dirKey = null;
+
+    let recentKey = keyboard.getRecentDown();
+    if (recentKey && recentKey.substr(0, 5) == "Arrow") {
+      dirKey = recentKey;
+    } else {
+      dirKey = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].find(key => keyboard.isDown(key));
+    }
+
+    if (dirKey == 'ArrowUp') {
       newPos = { x: this.x, y: this.y - this.speed * dt, r: 0 };
-    }
-    if (keyboard.isRecentDown('ArrowDown')) {
+    } else if (dirKey == 'ArrowDown') {
       newPos = { x: this.x, y: this.y + this.speed * dt, r: 180 };
-    }
-    if (keyboard.isRecentDown('ArrowLeft')) {
+    } else if (dirKey == 'ArrowLeft') {
       newPos = { x: this.x - this.speed * dt, y: this.y, r: 270 };
-    }
-    if (keyboard.isRecentDown('ArrowRight')) {
+    } else if (dirKey == 'ArrowRight') {
       newPos = { x: this.x + this.speed * dt, y: this.y, r: 90 };
     }
+
     if (newPos) {
       this.res = (Date.now() % 600 < 300) ? 'res/dude-walk1.png' : 'res/dude-walk2.png';
       this.rotation = newPos.r;

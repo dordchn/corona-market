@@ -4,6 +4,7 @@ class Keyboard {
     this.recentPressed = null;
 
     document.addEventListener('keydown', evt => {
+      if (evt.repeat) return;
       this.pressed[evt.code] = true;
       this.recentPressed = evt.code;
     });
@@ -25,8 +26,8 @@ class Keyboard {
     return key in this.pressed;
   }
 
-  isRecentDown(key) {
-    return key == this.recentPressed;
+  getRecentDown() {
+    return this.recentPressed;
   }
 }
 
