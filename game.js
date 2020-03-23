@@ -1,6 +1,6 @@
 import resources from './utils/resources.js';
+import sounds from './utils/sounds.js';
 import { boxCollides, boxContains } from './utils/collision.js';
-
 
 class Game extends HTMLElement {
   constructor() {
@@ -65,6 +65,7 @@ class Game extends HTMLElement {
       if (!this.level) return;
       let playerBB = this.level.player.getBoundingBox();
       if (evt.key == ' ' && !evt.repeat) {
+        this.dispatchEvent(new CustomEvent('point'));
         this.level.items = this.level.items.filter(item => {
           return !boxCollides(playerBB, item.getBoundingBox());
         });
@@ -135,9 +136,14 @@ class Game extends HTMLElement {
       if (this.level.items.length == 0) {
         this.stop();
         this.dispatchEvent(new CustomEvent('win'));
-      } else {
-        this.level.seller.popup('res/seller-forget.png', 30);
+      } else if (!this.level.exit.touching) {
+        sounds.play('res/illegal.mp3');
+        this.level.seller.showPopup('res/seller-forget.png', 30);
+        this.level.exit.touching = true;
       }
+    } else if (this.level.exit.touching) {
+      this.level.exit.touching = null;
+      this.level.seller.hidePopup();
     }
   }
 

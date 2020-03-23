@@ -4,15 +4,19 @@ import sounds from './utils/sounds.js';
 let game = document.querySelector('x-game');
 game.init();
 
-game.addEventListener('win', () => {
-  console.log('win!');
+game.addEventListener('point', async () => {
+  await sounds.play('res/point.mp3', 0.7);
+});
+
+game.addEventListener('win', async () => {
   sounds.stopBackground();
+  await sounds.play('res/win.mp3', 0.7);
 });
 
 game.addEventListener('loss', async () => {
-  console.log('loss :(');
   sounds.stopBackground();
   await sounds.play('res/cough-boy9.mp3');
+  await sounds.play('res/loss.mp3', 0.7);
 });
 
 document.querySelector('#start_btn').addEventListener('click',async () => {
@@ -20,7 +24,6 @@ document.querySelector('#start_btn').addEventListener('click',async () => {
     let startButton = document.querySelector('#start_btn');
     startButton.style.display = 'none';
     game.loadLevel(level1);
-    await sounds.play('res/cough-boy9.mp3');
     sounds.playBackground();
   }
 });

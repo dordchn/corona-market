@@ -8,12 +8,16 @@ class Seller {
     this.popupOffset = 0;
   }
 
-  popup(res, offsetX = 0) {
+  showPopup(res, offsetX = 0) {
     if (this.popupImg) {
       return;
     }
     this.popupImg = resources.get(res);
     this.popupOffset = offsetX;
+  }
+
+  hidePopup() {
+    this.popupImg = null;
   }
 
   render(ctx) {
@@ -27,7 +31,6 @@ class Seller {
     ctx.restore();
     if (this.popupImg) {
       ctx.drawImage(this.popupImg, this.x - this.popupImg.width + this.popupOffset, this.y - this.popupImg.height - 10);
-      this.popupImg = null;
     }
   }
 }
