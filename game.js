@@ -65,10 +65,15 @@ class Game extends HTMLElement {
       if (!this.level) return;
       let playerBB = this.level.player.getBoundingBox();
       if (evt.key == ' ' && !evt.repeat) {
-        this.dispatchEvent(new CustomEvent('point'));
+        let itemsBefore = this.level.items.length;
         this.level.items = this.level.items.filter(item => {
           return !boxCollides(playerBB, item.getBoundingBox());
         });
+        if (this.level.items.length < itemsBefore) {
+          this.dispatchEvent(new CustomEvent('point'));
+        } else {
+          sounds.play('res/illegal.mp3');
+        }
       }
     });
 
