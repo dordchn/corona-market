@@ -3,6 +3,9 @@ import sounds from './utils/sounds.js';
 
 let startButton = document.querySelector('#start_btn');
 
+let levels = [level1];
+let levelIndex = 0;
+
 let game = document.querySelector('x-game');
 game.init();
 
@@ -13,8 +16,14 @@ game.addEventListener('point', async () => {
 game.addEventListener('win', async () => {
   sounds.stopBackground();
   await sounds.play('res/win.mp3', 0.7);
-  game.reset();
-  startButton.style.display = '';
+  levelIndex = (levelIndex + 1) % levels.length;
+  if (levelIndex == 0) { // Completed game
+    game.reset();
+    startButton.style.display = '';
+  } else {
+    game.loadLevel(levels[levelIndex]);
+    sounds.playBackground();
+  }
 });
 
 game.addEventListener('loss', async () => {
@@ -25,10 +34,10 @@ game.addEventListener('loss', async () => {
   startButton.style.display = '';
 });
 
-document.querySelector('#start_btn').addEventListener('click',async () => {
+document.querySelector('#start_btn').addEventListener('click', async () => {
   if (game.ready) {
     startButton.style.display = 'none';
-    game.loadLevel(level1);
+    game.loadLevel(levels[levelIndex]);
     sounds.playBackground();
   }
 });

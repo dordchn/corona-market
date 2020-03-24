@@ -72,7 +72,7 @@ class Game extends HTMLElement {
         if (this.level.items.length < itemsBefore) {
           this.dispatchEvent(new CustomEvent('point'));
         } else {
-          sounds.play('res/illegal.mp3');
+          sounds.play('res/illegal.mp3', 0.7);
         }
       }
     });
