@@ -1,9 +1,10 @@
 import level1 from './levels/level1.js';
+import level2 from './levels/level2.js';
 import sounds from './utils/sounds.js';
 
 let startButton = document.querySelector('#start_btn');
 
-let levels = [level1];
+let levels = [level1, level2];
 let levelIndex = 0;
 
 let game = document.querySelector('x-game');
@@ -32,6 +33,7 @@ game.addEventListener('loss', async () => {
   await sounds.play('res/loss.mp3', 0.7);
   game.reset();
   startButton.style.display = '';
+  levelIndex = 0;
 });
 
 document.querySelector('#start_btn').addEventListener('click', async () => {
