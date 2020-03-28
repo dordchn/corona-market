@@ -1,3 +1,4 @@
+import resources from '../utils/resources.js';
 
 class Item {
   constructor(x, y, res) {
@@ -17,13 +18,10 @@ class Item {
   }
 
   render(ctx) {
-    // todo: draw image from resource.
-    ctx.beginPath();
-    ctx.strokeStyle = '#000000';
-    ctx.fillStyle = this.res;
-    ctx.arc(this.x, this.y, 18, 0, 2 * Math.PI);
-    ctx.fill();
-    ctx.stroke();
+    if (!this.res) return;
+    ctx.save();
+    let img = resources.get(this.res);
+    ctx.drawImage(img, this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
     ctx.restore();
   }
 }

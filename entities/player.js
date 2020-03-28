@@ -6,7 +6,6 @@ class Player {
     this.x = x;
     this.y = y;
     this.rotation = rotation;
-    this.src = 'res/dude-stand.png';
     this.size = 40;
     this.speed = 150;
   }

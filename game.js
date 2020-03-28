@@ -54,10 +54,28 @@ class Game extends HTMLElement {
   async init() {
     await resources.loadImages([
       'res/floor.png',
+      'res/virus.svg',
+
+      // Player
       'res/dude-stand.png',
       'res/dude-walk1.png',
       'res/dude-walk2.png',
+      
+      // Seller
       'res/seller-forget.png',
+
+      // Items
+      'res/items/avocado.svg',
+      'res/items/bread.svg',
+      'res/items/broccoli.svg',
+      'res/items/cabbage.svg',
+      'res/items/carrot.svg',
+      'res/items/cereal.svg',
+      'res/items/honey.svg',
+      'res/items/juice.svg',
+      'res/items/milk.svg',
+      'res/items/paper.svg',
+      'res/items/tomato.svg',
     ]);
 
     this.floorPattern = this.ctx.createPattern(resources.get('res/floor.png'), 'repeat');

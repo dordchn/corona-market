@@ -37,6 +37,10 @@ x-game {
   color: #666;
 }
 
+.credits > div {
+  margin-bottom: 8px;
+}
+
 a {
   color: #000;
 }

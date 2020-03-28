@@ -14,7 +14,7 @@ export default () => {
     ],
     exit: new Obstacle(844, 556, 120, 20), // Exit
     items: [
-      new Item(40, 200, 'red'),
+      new Item(40, 200, 'res/items/milk.svg'),
     ],
     customers: [
       new Customer([

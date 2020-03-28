@@ -40,6 +40,6 @@ document.querySelector('#start_btn').addEventListener('click', async () => {
   if (game.ready) {
     startButton.style.display = 'none';
     game.loadLevel(levels[levelIndex]);
-    sounds.playBackground();
+    // sounds.playBackground();
   }
 });
