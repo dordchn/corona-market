@@ -3,6 +3,7 @@ class Sounds {
   constructor() {
     this.bgMain = this.createAudio('res/sounds/background.mp3', 0.4);
     this.bgMain.loop = true;
+    this.lastCough = -1;
     this.bgCoughs = [
       this.createAudio('res/sounds/cough-boy9.mp3', 0.5),
       this.createAudio('res/sounds/cough-female602.mp3', 0.3),
@@ -16,8 +17,10 @@ class Sounds {
   playBackground() {
     this.bgMain.play();
     this.bgInterval = setInterval(() => {
-      this.bgCoughs[Math.floor(this.bgCoughs.length * Math.random())].play();
-    }, 8000);
+      let coughIndex = (this.lastCough + getRandom(1, this.bgCoughs.length - 1)) % this.bgCoughs.length;
+      this.lastCough = coughIndex;
+      this.bgCoughs[this.lastCough].play();
+    }, 7000);
   }
 
   stopBackground() {
@@ -38,7 +41,7 @@ class Sounds {
       this.audios[src] = this.createAudio(src, volume);
     }
     return new Promise((res, rej) => {
-      this.audios[src].onended = () => res();      
+      this.audios[src].onended = () => res();
       this.audios[src].play();
     });
   }
@@ -51,3 +54,7 @@ class Sounds {
 }
 
 export default new Sounds();
+
+function getRandom(min, max) {
+  return min + Math.floor(Math.random() * (max - min + 1));
+}
