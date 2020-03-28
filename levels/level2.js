@@ -22,7 +22,7 @@ export default () => {
         { x: 940, y: 25 },
         { x: 940, y: 180 },
         { x: 560, y: 180 },
-      ], ''),
+      ], 'res/imgs/buyer4-left.svg', 'res/imgs/buyer4-right.svg'),
     ],
     seller: new Seller(990, 480), // Seller
   };

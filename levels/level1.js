@@ -38,11 +38,11 @@ export default () => {
         { x: 940, y: 25 },
         { x: 940, y: 180 },
         { x: 560, y: 180 },
-      ], ''),
+      ], 'res/imgs/buyer1-left.svg', 'res/imgs/buyer1-right.svg'),
       new Customer([
         { x: 560, y: 360 },
         { x: 560, y: 550 },
-      ], ''),
+      ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
     ],
     seller: new Seller(990, 480), // Seller
   };

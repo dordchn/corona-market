@@ -60,10 +60,16 @@ class Game extends HTMLElement {
       'res/imgs/player.svg',
       'res/imgs/player-left.svg',
       'res/imgs/player-right.svg',
-      
+
       // Seller
       'res/imgs/seller.svg',
       'res/imgs/seller-forget.png',
+
+      // Buyers
+      'res/imgs/buyer1-left.svg', 'res/imgs/buyer1-right.svg',
+      'res/imgs/buyer2-left.svg', 'res/imgs/buyer2-right.svg',
+      'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg',
+      'res/imgs/buyer4-left.svg', 'res/imgs/buyer4-right.svg',
 
       // Items
       'res/imgs/items/avocado.svg',
