@@ -8,11 +8,11 @@ export default () => {
   return {
     player: new Player(/*x=*/ 140, /*y=*/ 530, /*rotation=*/ 0),
     obstacles: [
-      new Obstacle(80, 556, 120, 20), // Entrance
+      new Obstacle(80, 556, 120, 20, { color: 'black' }), // Entrance
 
-      new Obstacle(934, 420, 30, 120), // Desk
+      new Obstacle(934, 420, 30, 120, { color: '#ddd' }), // Desk
     ],
-    exit: new Obstacle(844, 556, 120, 20), // Exit
+    exit: new Obstacle(844, 556, 120, 20, { color: 'black' }), // Exit
     items: [
       new Item(40, 200, 'res/imgs/items/milk.svg'),
     ],
