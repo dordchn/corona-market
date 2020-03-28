@@ -1,13 +1,13 @@
 
 class Sounds {
   constructor() {
-    this.bgMain = this.createAudio('res/background.mp3', 0.4);
+    this.bgMain = this.createAudio('res/sounds/background.mp3', 0.4);
     this.bgMain.loop = true;
     this.bgCoughs = [
-      this.createAudio('res/cough-boy9.mp3', 0.5),
-      this.createAudio('res/cough-female602.mp3', 0.3),
-      this.createAudio('res/clearing-throat-male2.mp3', 0.4),
-      this.createAudio('res/clearing-throat-female.mp3', 0.4),
+      this.createAudio('res/sounds/cough-boy9.mp3', 0.5),
+      this.createAudio('res/sounds/cough-female602.mp3', 0.3),
+      this.createAudio('res/sounds/clearing-throat-male2.mp3', 0.4),
+      this.createAudio('res/sounds/clearing-throat-female.mp3', 0.4),
     ];
 
     this.audios = {};

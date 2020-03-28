@@ -91,7 +91,7 @@ class Game extends HTMLElement {
         if (this.level.items.length < itemsBefore) {
           this.dispatchEvent(new CustomEvent('point'));
         } else {
-          sounds.play('res/illegal.mp3', 0.7);
+          sounds.play('res/sounds/illegal.mp3', 0.7);
         }
       }
     });
@@ -163,7 +163,7 @@ class Game extends HTMLElement {
         this.stop();
         this.dispatchEvent(new CustomEvent('win'));
       } else if (!this.level.exit.touching) {
-        sounds.play('res/illegal.mp3');
+        sounds.play('res/sounds/illegal.mp3');
         this.level.seller.showPopup('res/seller-forget.png', 30);
         this.level.exit.touching = true;
       }
