@@ -4,6 +4,7 @@ class Seller {
   constructor(x, y) {
     this.x = x;
     this.y = y;
+    this.size = 40;
     this.popupImg = null;
     this.popupOffset = 0;
   }
@@ -21,14 +22,8 @@ class Seller {
   }
 
   render(ctx) {
-    // todo: add communication popup ("Don't you forget something?" "Pay first")
-    ctx.beginPath();
-    ctx.strokeStyle = '#000000';
-    ctx.fillStyle = "#663300";
-    ctx.arc(this.x, this.y, 18, 0, 2 * Math.PI);
-    ctx.fill();
-    // ctx.stroke();
-    ctx.restore();
+    let img = resources.get('res/imgs/seller.svg');
+    ctx.drawImage(img, this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
     if (this.popupImg) {
       ctx.drawImage(this.popupImg, this.x - this.popupImg.width + this.popupOffset, this.y - this.popupImg.height - 10);
     }

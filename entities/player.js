@@ -41,7 +41,7 @@ class Player {
     }
 
     if (newPos) {
-      this.res = (Date.now() % 600 < 300) ? 'res/imgs/dude-walk1.png' : 'res/imgs/dude-walk2.png';
+      this.res = (Date.now() % 600 < 300) ? 'res/imgs/player-left.svg' : 'res/imgs/player-right.svg';
       this.rotation = newPos.r;
 
       let newBoundingBox = {
@@ -55,7 +55,7 @@ class Player {
         this.y = newPos.y;
       }
     } else {
-      this.res = 'res/imgs/dude-stand.png';
+      this.res = 'res/imgs/player.svg';
     }
   }
 

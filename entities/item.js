@@ -6,6 +6,7 @@ class Item {
     this.y = y;
     this.size = 40;
     this.res = res;
+    
   }
 
   getBoundingBox() {
@@ -19,10 +20,8 @@ class Item {
 
   render(ctx) {
     if (!this.res) return;
-    ctx.save();
     let img = resources.get(this.res);
     ctx.drawImage(img, this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
-    ctx.restore();
   }
 }
 

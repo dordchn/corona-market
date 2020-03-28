@@ -57,11 +57,12 @@ class Game extends HTMLElement {
       'res/imgs/virus.svg',
 
       // Player
-      'res/imgs/dude-stand.png',
-      'res/imgs/dude-walk1.png',
-      'res/imgs/dude-walk2.png',
+      'res/imgs/player.svg',
+      'res/imgs/player-left.svg',
+      'res/imgs/player-right.svg',
       
       // Seller
+      'res/imgs/seller.svg',
       'res/imgs/seller-forget.png',
 
       // Items
