@@ -54,6 +54,8 @@ class Game extends HTMLElement {
   async init() {
     await resources.loadImages([
       'res/imgs/floor.png',
+      'res/imgs/freezer.svg',
+      'res/imgs/vegetables.png',
       'res/imgs/virus.svg',
 
       // Player
