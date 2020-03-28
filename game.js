@@ -53,32 +53,32 @@ class Game extends HTMLElement {
 
   async init() {
     await resources.loadImages([
-      'res/floor.png',
-      'res/virus.svg',
+      'res/imgs/floor.png',
+      'res/imgs/virus.svg',
 
       // Player
-      'res/dude-stand.png',
-      'res/dude-walk1.png',
-      'res/dude-walk2.png',
+      'res/imgs/dude-stand.png',
+      'res/imgs/dude-walk1.png',
+      'res/imgs/dude-walk2.png',
       
       // Seller
-      'res/seller-forget.png',
+      'res/imgs/seller-forget.png',
 
       // Items
-      'res/items/avocado.svg',
-      'res/items/bread.svg',
-      'res/items/broccoli.svg',
-      'res/items/cabbage.svg',
-      'res/items/carrot.svg',
-      'res/items/cereal.svg',
-      'res/items/honey.svg',
-      'res/items/juice.svg',
-      'res/items/milk.svg',
-      'res/items/paper.svg',
-      'res/items/tomato.svg',
+      'res/imgs/items/avocado.svg',
+      'res/imgs/items/bread.svg',
+      'res/imgs/items/broccoli.svg',
+      'res/imgs/items/cabbage.svg',
+      'res/imgs/items/carrot.svg',
+      'res/imgs/items/cereal.svg',
+      'res/imgs/items/honey.svg',
+      'res/imgs/items/juice.svg',
+      'res/imgs/items/milk.svg',
+      'res/imgs/items/paper.svg',
+      'res/imgs/items/tomato.svg',
     ]);
 
-    this.floorPattern = this.ctx.createPattern(resources.get('res/floor.png'), 'repeat');
+    this.floorPattern = this.ctx.createPattern(resources.get('res/imgs/floor.png'), 'repeat');
 
     document.addEventListener('keydown', evt => {
       if (!this.level) return;
@@ -164,7 +164,7 @@ class Game extends HTMLElement {
         this.dispatchEvent(new CustomEvent('win'));
       } else if (!this.level.exit.touching) {
         sounds.play('res/sounds/illegal.mp3');
-        this.level.seller.showPopup('res/seller-forget.png', 30);
+        this.level.seller.showPopup('res/imgs/seller-forget.png', 30);
         this.level.exit.touching = true;
       }
     } else if (this.level.exit.touching) {
