@@ -13,7 +13,7 @@ class Customer {
     this.speedToDst = this.getXySpeed();
     this.timeOffset = Math.floor(Math.random() * 600);
     this.rotation = this.speedToDst.dir;
-    this.infectingRadius = 60;
+    this.infectingRadius = 50;
   }
 
   getBoundingBox() {
@@ -22,6 +22,14 @@ class Customer {
       y: this.y - this.size / 2,
       w: this.size,
       h: this.size,
+    };
+  }
+
+  getBoundingArc() {
+    return {
+      x: this.x,
+      y: this.y,
+      r: this.infectingRadius,
     };
   }
 

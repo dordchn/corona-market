@@ -16,4 +16,8 @@ function boxContains(box1, box2) {
     box2.y + box2.h <= box1.y + box1.h;
 }
 
-export { boxCollides, boxContains };
+function arcCollides(arc1, arc2) {
+  return Math.hypot(arc1.x - arc2.x, arc1.y - arc2.y) <= arc1.r + arc2.r;
+}
+
+export { boxCollides, boxContains, arcCollides };

@@ -1,6 +1,6 @@
 import resources from './utils/resources.js';
 import sounds from './utils/sounds.js';
-import { boxCollides, boxContains } from './utils/collision.js';
+import { boxCollides, boxContains, arcCollides } from './utils/collision.js';
 
 class Game extends HTMLElement {
   constructor() {
@@ -159,7 +159,7 @@ class Game extends HTMLElement {
 
     // Test loss
     for (let customer of this.level.customers) {
-      if (Math.hypot(this.level.player.x - customer.x, this.level.player.y - customer.y) <= customer.infectingRadius + this.level.player.size / 2) {
+      if (arcCollides(this.level.player.getBoundingArc(), customer.getBoundingArc())) {
         this.stop();
         this.dispatchEvent(new CustomEvent('loss'));
         break;
