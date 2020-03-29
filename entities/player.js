@@ -19,6 +19,14 @@ class Player {
     };
   }
 
+  getBoundingArc() {
+    return {
+      x: this.x,
+      y: this.y,
+      r: this.size * 0.4,
+    };
+  }
+
   update(dt, validator) {
     let newPos = null;
     let dirKey = null;
