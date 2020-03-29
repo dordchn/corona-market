@@ -25,7 +25,7 @@ class Customer {
     };
   }
 
-  getBoundingArc() {
+  getInfectingArea() {
     return {
       x: this.x,
       y: this.y,

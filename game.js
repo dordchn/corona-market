@@ -159,7 +159,7 @@ class Game extends HTMLElement {
 
     // Test loss
     for (let customer of this.level.customers) {
-      if (arcCollides(this.level.player.getBoundingArc(), customer.getBoundingArc())) {
+      if (arcCollides(this.level.player.getBoundingArc(), customer.getInfectingArea())) {
         this.stop();
         this.dispatchEvent(new CustomEvent('loss'));
         break;
