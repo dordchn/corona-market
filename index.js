@@ -3,6 +3,7 @@ import level2 from './levels/level2.js';
 import sounds from './utils/sounds.js';
 
 let startButton = document.querySelector('#start_btn');
+let topRow = document.querySelector('#top_row');
 
 let levels = [level1, level2];
 let levelIndex = 0;
@@ -32,6 +33,7 @@ game.addEventListener('loss', async () => {
   await sounds.play('res/sounds/cough-boy9.mp3');
   await sounds.play('res/sounds/loss.mp3', 0.7);
   game.reset();
+  topRow.style.visibility = 'hidden';
   startButton.style.display = '';
   levelIndex = 0;
 });
@@ -41,5 +43,6 @@ document.querySelector('#start_btn').addEventListener('click', async () => {
     startButton.style.display = 'none';
     game.loadLevel(levels[levelIndex]);
     sounds.playBackground();
+    topRow.style.visibility = 'visible';
   }
 });

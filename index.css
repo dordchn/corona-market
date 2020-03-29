@@ -19,7 +19,7 @@ x-game {
   position: absolute;
   width: 260px;
   padding-bottom: 8px;
-  top: 200px;
+  top: 226px;
   left: calc(50% - var(--width) / 2);
 
   background-color: #CEF8;
@@ -43,4 +43,33 @@ x-game {
 
 a {
   color: #000;
+}
+
+#top_row {
+  text-align: left;
+  visibility: hidden;
+}
+
+.audio-controller {
+  display: inline-block;
+  padding-left: 2px;
+  padding-right: 8px;
+  cursor: pointer;
+}
+
+.speaker {
+  height: 22px;
+  vertical-align: bottom;
+  margin-right: 2px;
+}
+
+.speaker-text {
+  display:inline-block;
+  font-family: cursive;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.life-icon {
+  height: 26px;
 }
