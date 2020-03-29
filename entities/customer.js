@@ -13,6 +13,7 @@ class Customer {
     this.speedToDst = this.getXySpeed();
     this.timeOffset = Math.floor(Math.random() * 600);
     this.rotation = this.speedToDst.dir;
+    this.infectingRadius = 50;
   }
 
   getBoundingBox() {
@@ -21,6 +22,14 @@ class Customer {
       y: this.y - this.size / 2,
       w: this.size,
       h: this.size,
+    };
+  }
+
+  getInfectingArea() {
+    return {
+      x: this.x,
+      y: this.y,
+      r: this.infectingRadius,
     };
   }
 
@@ -51,6 +60,11 @@ class Customer {
 
   render(ctx) {
     ctx.save();
+    ctx.beginPath();
+    ctx.fillStyle = 'rgba(0, 180, 0, 0.4)';
+    ctx.arc(this.x, this.y, this.infectingRadius, 0, 2 * Math.PI);
+    ctx.fill();
+
     ctx.translate(this.x, this.y);
     ctx.rotate(this.rotation + Math.PI / 2);
     let img = resources.get(this.res);
