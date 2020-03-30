@@ -3,6 +3,7 @@ body {
   text-align: center;
   margin-top: 20px;
   font-family: sans-serif;
+  user-select: none;
 }
 
 .logo {
