@@ -1,6 +1,8 @@
 
 class Sounds {
   constructor() {
+    this.muted = false;
+    
     this.bgMain = this.createAudio('res/sounds/background.mp3', 0.4);
     this.bgMain.loop = true;
     this.lastCough = -1;
@@ -27,7 +29,6 @@ class Sounds {
     clearInterval(this.bgInterval);
     this.bgMain.pause();
     this.bgMain.currentTime = 0;
-    this.bg
     this.bgCoughs.forEach(cough => {
       cough.pause();
       cough.currentTime = 0;
@@ -49,7 +50,22 @@ class Sounds {
   createAudio(src, volume = 1) {
     let audio = new Audio(src);
     audio.volume = volume;
+    audio.muted = this.muted;
     return audio;
+  }
+
+  getAllAudios() {
+    return [...this.bgCoughs, this.bgMain, ...Object.values(this.audios)];
+  }
+
+  mute() {
+    this.muted = true;
+    this.getAllAudios().forEach(audio => audio.muted = true);
+  }
+
+  unmute() {
+    this.muted = false;
+    this.getAllAudios().forEach(audio => audio.muted = false);
   }
 }
 

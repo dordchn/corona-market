@@ -15,8 +15,23 @@
 
 <body>
   <div class="container">
+    <div id="top_row">
+      <span id="mute_button" class="sound-button">
+        <img class="speaker" src="res/imgs/speaker.svg">
+        <span class="speaker-text">Mute</span>
+      </span>
+      <span id="unmute_button" class="sound-button" style="display: none;">
+        <img class="speaker" src="res/imgs/mute.svg">
+        <span class="speaker-text">Unmute</span>
+      </span>
+      <div id="lives" style="float: right;">
+        <img class="life-icon used" src="res/imgs/player.svg">
+        <img class="life-icon used" src="res/imgs/player.svg">
+        <img class="life-icon used" src="res/imgs/player.svg">
+      </div>
+    </div>
     <div class="main-screen">
-      <div id="start_btn">
+      <div id="start_button">
         Start
       </div>
     </div>
@@ -26,7 +41,8 @@
   <div class="credits">
     <div>Created by <a href="https://www.linkedin.com/in/dor-cohen-ab55a463/">Dor Cohen</a></div>
     <div>Sound effects & music obtained from <a href="https://www.zapsplat.com">zapsplat</a></div>
-    <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
+        href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
   </div>
 
   <script type="module" src="game.js"></script>
