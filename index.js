@@ -17,10 +17,12 @@ game.addEventListener('point', async () => {
 });
 
 game.addEventListener('win', async () => {
+  gtag('event', 'win', { 'event_category': 'Level', 'event_label': 'Level' + (levelIndex + 1) });
   sounds.stopBackground();
   await sounds.play('res/sounds/win.mp3', 0.7);
   levelIndex = (levelIndex + 1) % levels.length;
   if (levelIndex == 0) { // Completed game
+    gtag('event', 'win', { 'event_category': 'Game'});
     loadMenu();
   } else {
     game.loadLevel(levels[levelIndex]);
@@ -29,6 +31,7 @@ game.addEventListener('win', async () => {
 });
 
 game.addEventListener('loss', async () => {
+  gtag('event', 'loss', { 'event_category': 'Level', 'event_label': 'Level' + (levelIndex + 1) });
   sounds.stopBackground();
   await sounds.play('res/sounds/cough-boy9.mp3');
   let lives = livesContainer.querySelectorAll('img:not(.used)');
@@ -38,6 +41,7 @@ game.addEventListener('loss', async () => {
     game.loadLevel(levels[levelIndex]);
     sounds.playBackground();
   } else {
+    gtag('event', 'loss', { 'event_category': 'Game', 'event_label': 'Level' + (levelIndex + 1) });
     await sounds.play('res/sounds/loss.mp3', 0.7);
     loadMenu();
     levelIndex = 0;
@@ -51,8 +55,9 @@ function loadMenu() {
   Array.from(livesContainer.children).forEach(life => life.classList.add('used'));
 }
 
-document.querySelector('#start_button').addEventListener('click', async () => {
+startButton.addEventListener('click', async () => {
   if (game.ready) {
+    gtag('event', 'start', { 'event_category': 'Game' });
     Array.from(livesContainer.children).forEach(life => life.classList.remove('used'));
     startButton.style.display = 'none';
     game.loadLevel(levels[levelIndex]);
