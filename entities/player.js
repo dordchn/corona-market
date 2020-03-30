@@ -7,7 +7,7 @@ class Player {
     this.y = y;
     this.rotation = rotation;
     this.size = 40;
-    this.speed = 150;
+    this.speed = 450;
   }
 
   getBoundingBox() {

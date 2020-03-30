@@ -4,6 +4,7 @@ import sounds from './utils/sounds.js';
 
 let startButton = document.querySelector('#start_button');
 let topRow = document.querySelector('#top_row');
+let livesContainer = document.querySelector('#lives');
 
 let levels = [level1, level2];
 let levelIndex = 0;
@@ -20,8 +21,7 @@ game.addEventListener('win', async () => {
   await sounds.play('res/sounds/win.mp3', 0.7);
   levelIndex = (levelIndex + 1) % levels.length;
   if (levelIndex == 0) { // Completed game
-    game.reset();
-    startButton.style.display = '';
+    loadMenu();
   } else {
     game.loadLevel(levels[levelIndex]);
     sounds.playBackground();
@@ -31,15 +31,29 @@ game.addEventListener('win', async () => {
 game.addEventListener('loss', async () => {
   sounds.stopBackground();
   await sounds.play('res/sounds/cough-boy9.mp3');
-  await sounds.play('res/sounds/loss.mp3', 0.7);
+  let lives = livesContainer.querySelectorAll('img:not(.used)');
+  if (lives.length > 0) {
+    await sounds.play('res/sounds/life.mp3', 0.7);
+    lives[0].classList.add('used');
+    game.loadLevel(levels[levelIndex]);
+    sounds.playBackground();
+  } else {
+    await sounds.play('res/sounds/loss.mp3', 0.7);
+    loadMenu();
+    levelIndex = 0;
+  }
+});
+
+function loadMenu() {
   game.reset();
   topRow.style.visibility = 'hidden';
   startButton.style.display = '';
-  levelIndex = 0;
-});
+  Array.from(livesContainer.children).forEach(life => life.classList.add('used'));
+}
 
 document.querySelector('#start_button').addEventListener('click', async () => {
   if (game.ready) {
+    Array.from(livesContainer.children).forEach(life => life.classList.remove('used'));
     startButton.style.display = 'none';
     game.loadLevel(levels[levelIndex]);
     sounds.playBackground();
