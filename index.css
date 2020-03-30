@@ -1,8 +1,20 @@
 body {
   position: relative;
   text-align: center;
-  margin-top: 60px;
+  margin-top: 20px;
   font-family: sans-serif;
+}
+
+.logo {
+  font-size: 72px;
+  font-family: cursive;
+  letter-spacing: 6px;
+}
+
+.logo img {
+  width: 62px;
+  vertical-align: bottom;
+  margin: 0 -2px 7px -6px;
 }
 
 .container {
@@ -17,12 +29,11 @@ x-game {
 #start_button {
   --width: 260px;
   position: absolute;
-  width: 260px;
+  width: var(--width);
   padding-bottom: 8px;
   top: 226px;
   left: calc(50% - var(--width) / 2);
-
-  background-color: #CEF8;
+  background-color: #90ee83;
   border: 1px solid black;
   border-radius: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -37,7 +48,7 @@ x-game {
   color: #666;
 }
 
-.credits > div {
+.credits>div {
   margin-bottom: 8px;
 }
 
@@ -64,7 +75,7 @@ a {
 }
 
 .speaker-text {
-  display:inline-block;
+  display: inline-block;
   font-family: cursive;
   font-size: 18px;
   line-height: 20px;
