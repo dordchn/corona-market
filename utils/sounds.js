@@ -1,6 +1,8 @@
 
 class Sounds {
   constructor() {
+    this.muted = false;
+    
     this.bgMain = this.createAudio('res/sounds/background.mp3', 0.4);
     this.bgMain.loop = true;
     this.lastCough = -1;
@@ -12,48 +14,28 @@ class Sounds {
     ];
 
     this.audios = {};
-
-    this.backgroundOn = false;
-    this.muted = false;
   }
 
   playBackground() {
-    if (!this.backgroundOn && !this.muted) {
-      this.setBackgroundInternal(true);
-    }
-    this.backgroundOn = true;
+    this.bgMain.play();
+    this.bgInterval = setInterval(() => {
+      let coughIndex = (this.lastCough + getRandom(1, this.bgCoughs.length - 1)) % this.bgCoughs.length;
+      this.lastCough = coughIndex;
+      this.bgCoughs[this.lastCough].play();
+    }, 7000);
   }
 
   stopBackground() {
-    if (this.backgroundOn && !this.muted) {
-      this.setBackgroundInternal(false);
-    }
-    this.backgroundOn = false;
-  }
-
-  setBackgroundInternal(state) {
-    if (state) {
-      this.bgMain.play();
-      this.bgInterval = setInterval(() => {
-        let coughIndex = (this.lastCough + getRandom(1, this.bgCoughs.length - 1)) % this.bgCoughs.length;
-        this.lastCough = coughIndex;
-        this.bgCoughs[this.lastCough].play();
-      }, 7000);
-    } else {
-      clearInterval(this.bgInterval);
-      this.bgMain.pause();
-      this.bgMain.currentTime = 0;
-      this.bgCoughs.forEach(cough => {
-        cough.pause();
-        cough.currentTime = 0;
-      });
-    }
+    clearInterval(this.bgInterval);
+    this.bgMain.pause();
+    this.bgMain.currentTime = 0;
+    this.bgCoughs.forEach(cough => {
+      cough.pause();
+      cough.currentTime = 0;
+    });
   }
 
   play(src, volume) {
-    if (this.muted) {
-      return;
-    }
     if (src in this.audios) {
       this.audios[src].currentTime = 0;
     } else {
@@ -68,35 +50,22 @@ class Sounds {
   createAudio(src, volume = 1) {
     let audio = new Audio(src);
     audio.volume = volume;
+    audio.muted = this.muted;
     return audio;
   }
 
+  getAllAudios() {
+    return [...this.bgCoughs, this.bgMain, ...Object.values(this.audios)];
+  }
+
   mute() {
-    if (this.muted) {
-      return;
-    }
     this.muted = true;
-    if (this.backgroundOn) {
-      this.setBackgroundInternal(false); // Stops the bg music without changing backgroundOn.
-    }
-    Object.values(this.audios).forEach(audio => {
-      audio.pause();
-      audio.currentTime = 0;
-    });
+    this.getAllAudios().forEach(audio => audio.muted = true);
   }
 
   unmute() {
-    if (!this.muted) {
-      return;
-    }
     this.muted = false;
-    if (this.backgroundOn) {
-      this.setBackgroundInternal(true); // Plays the bg music without changing backgroundOn.
-    }
-  }
-
-  isMuted() {
-    return this.muted;
+    this.getAllAudios().forEach(audio => audio.muted = false);
   }
 }
 
