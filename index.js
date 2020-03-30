@@ -2,7 +2,7 @@ import level1 from './levels/level1.js';
 import level2 from './levels/level2.js';
 import sounds from './utils/sounds.js';
 
-let startButton = document.querySelector('#start_btn');
+let startButton = document.querySelector('#start_button');
 let topRow = document.querySelector('#top_row');
 
 let levels = [level1, level2];
@@ -38,11 +38,26 @@ game.addEventListener('loss', async () => {
   levelIndex = 0;
 });
 
-document.querySelector('#start_btn').addEventListener('click', async () => {
+document.querySelector('#start_button').addEventListener('click', async () => {
   if (game.ready) {
     startButton.style.display = 'none';
     game.loadLevel(levels[levelIndex]);
     sounds.playBackground();
     topRow.style.visibility = 'visible';
   }
+});
+
+const muteButton = document.querySelector('#mute_button');
+const unmuteButton = document.querySelector('#unmute_button');
+
+muteButton.addEventListener('click', function () {
+  sounds.mute();
+  muteButton.style.display = 'none';
+  unmuteButton.style.display = '';
+});
+
+unmuteButton.addEventListener('click', function () {
+  sounds.unmute();
+  unmuteButton.style.display = 'none';
+  muteButton.style.display = '';
 });

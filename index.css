@@ -14,7 +14,7 @@ x-game {
   display: inline-block;
 }
 
-#start_btn {
+#start_button {
   --width: 260px;
   position: absolute;
   width: 260px;
@@ -50,7 +50,7 @@ a {
   visibility: hidden;
 }
 
-.audio-controller {
+.sound-button {
   display: inline-block;
   padding-left: 2px;
   padding-right: 8px;
@@ -58,7 +58,7 @@ a {
 }
 
 .speaker {
-  height: 22px;
+  height: 20px;
   vertical-align: bottom;
   margin-right: 2px;
 }
@@ -67,7 +67,7 @@ a {
   display:inline-block;
   font-family: cursive;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 20px;
 }
 
 .life-icon {

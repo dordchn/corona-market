@@ -12,29 +12,48 @@ class Sounds {
     ];
 
     this.audios = {};
+
+    this.backgroundOn = false;
+    this.muted = false;
   }
 
   playBackground() {
-    this.bgMain.play();
-    this.bgInterval = setInterval(() => {
-      let coughIndex = (this.lastCough + getRandom(1, this.bgCoughs.length - 1)) % this.bgCoughs.length;
-      this.lastCough = coughIndex;
-      this.bgCoughs[this.lastCough].play();
-    }, 7000);
+    if (!this.backgroundOn && !this.muted) {
+      this.setBackgroundInternal(true);
+    }
+    this.backgroundOn = true;
   }
 
   stopBackground() {
-    clearInterval(this.bgInterval);
-    this.bgMain.pause();
-    this.bgMain.currentTime = 0;
-    this.bg
-    this.bgCoughs.forEach(cough => {
-      cough.pause();
-      cough.currentTime = 0;
-    });
+    if (this.backgroundOn && !this.muted) {
+      this.setBackgroundInternal(false);
+    }
+    this.backgroundOn = false;
+  }
+
+  setBackgroundInternal(state) {
+    if (state) {
+      this.bgMain.play();
+      this.bgInterval = setInterval(() => {
+        let coughIndex = (this.lastCough + getRandom(1, this.bgCoughs.length - 1)) % this.bgCoughs.length;
+        this.lastCough = coughIndex;
+        this.bgCoughs[this.lastCough].play();
+      }, 7000);
+    } else {
+      clearInterval(this.bgInterval);
+      this.bgMain.pause();
+      this.bgMain.currentTime = 0;
+      this.bgCoughs.forEach(cough => {
+        cough.pause();
+        cough.currentTime = 0;
+      });
+    }
   }
 
   play(src, volume) {
+    if (this.muted) {
+      return;
+    }
     if (src in this.audios) {
       this.audios[src].currentTime = 0;
     } else {
@@ -50,6 +69,34 @@ class Sounds {
     let audio = new Audio(src);
     audio.volume = volume;
     return audio;
+  }
+
+  mute() {
+    if (this.muted) {
+      return;
+    }
+    this.muted = true;
+    if (this.backgroundOn) {
+      this.setBackgroundInternal(false); // Stops the bg music without changing backgroundOn.
+    }
+    Object.values(this.audios).forEach(audio => {
+      audio.pause();
+      audio.currentTime = 0;
+    });
+  }
+
+  unmute() {
+    if (!this.muted) {
+      return;
+    }
+    this.muted = false;
+    if (this.backgroundOn) {
+      this.setBackgroundInternal(true); // Plays the bg music without changing backgroundOn.
+    }
+  }
+
+  isMuted() {
+    return this.muted;
   }
 }
 

@@ -16,10 +16,13 @@
 <body>
   <div class="container">
     <div id="top_row">
-      <span class="audio-controller">
+      <span id="mute_button" class="sound-button">
         <img class="speaker" src="res/imgs/speaker.svg">
-        <img class="speaker" src="res/imgs/mute.svg" style="display: none;">
         <span class="speaker-text">Mute</span>
+      </span>
+      <span id="unmute_button" class="sound-button" style="display: none;">
+        <img class="speaker" src="res/imgs/mute.svg">
+        <span class="speaker-text">Unmute</span>
       </span>
       <div style="float: right;">
         <img class="life-icon" src="res/imgs/player.svg">
@@ -28,7 +31,7 @@
       </div>
     </div>
     <div class="main-screen">
-      <div id="start_btn">
+      <div id="start_button">
         Start
       </div>
     </div>
