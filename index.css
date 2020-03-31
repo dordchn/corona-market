@@ -21,6 +21,7 @@ body {
 .container {
   display: inline-block;
   position: relative;
+  margin-top: 10px;
 }
 
 x-game {
@@ -58,12 +59,13 @@ a {
 }
 
 #top_row {
-  text-align: left;
   visibility: hidden;
 }
 
 .sound-button {
   display: inline-block;
+  position: absolute;
+  left: 0;
   padding-left: 2px;
   padding-right: 8px;
   cursor: pointer;
@@ -79,7 +81,11 @@ a {
   display: inline-block;
   font-family: cursive;
   font-size: 18px;
-  line-height: 20px;
+}
+
+#lives {
+  position: absolute;
+  right: 0;
 }
 
 .life-icon {
@@ -90,4 +96,12 @@ a {
 .life-icon.used {
   opacity: 0;
   transform: scale(0.01);
+}
+
+#level_label {
+  display: inline-block;
+  font-family: cursive;
+  font-size: 24px;
+  margin-top: -6px;
+  margin-bottom: 2px;
 }
