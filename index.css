@@ -1,21 +1,9 @@
 body {
   position: relative;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 30px;
   font-family: sans-serif;
   user-select: none;
-}
-
-.logo {
-  font-size: 72px;
-  font-family: cursive;
-  letter-spacing: 6px;
-}
-
-.logo img {
-  width: 62px;
-  vertical-align: bottom;
-  margin: 0 -2px 7px -6px;
 }
 
 .container {
