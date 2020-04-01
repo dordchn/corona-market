@@ -4,6 +4,7 @@ class Keyboard {
     this.recentPressed = null;
 
     document.addEventListener('keydown', evt => {
+      if (evt.key.substr(0, 5) == "Arrow" || evt.key == ' ') evt.preventDefault();
       if (evt.repeat) return;
       this.pressed[evt.code] = true;
       this.recentPressed = evt.code;
