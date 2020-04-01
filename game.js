@@ -57,6 +57,7 @@ class Game extends HTMLElement {
       'res/imgs/freezer.png',
       'res/imgs/vegetables.png',
       'res/imgs/vegetables-90.png',
+      'res/imgs/vegetables-180.png',
       'res/imgs/virus.svg',
 
       // Player

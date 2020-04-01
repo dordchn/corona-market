@@ -12,7 +12,7 @@ export default () => {
 
       new Obstacle(934, 420, 30, 120, { color: '#ddd' }), // Desk
 
-      new Obstacle(0, 240, 40, 576 - 240), // Left shelf
+      new Obstacle(0, 0, 40, 576), // Left shelf
 
       new Obstacle(60, 60, 300, 100, { src: 'res/imgs/freezer.png' }), // Freezer
       new Obstacle(1024 - 80, -16, 80, 400, { src: 'res/imgs/vegetables-90.png' }), // Vegetables
@@ -28,8 +28,8 @@ export default () => {
     ],
     exit: new Obstacle(844, 556, 120, 20, { color: 'black' }), // Exit
     items: [
-      new Item(540, 390, 'res/imgs/items/honey.svg'),
-      new Item(540, 500, 'res/imgs/items/cereal.svg'),
+      new Item(530, 390, 'res/imgs/items/honey.svg'),
+      new Item(530, 500, 'res/imgs/items/bread.svg'),
       new Item(940, 220, 'res/imgs/items/cabbage.svg'),
     ],
     customers: [
@@ -42,7 +42,7 @@ export default () => {
         { x: 370, y: 380 },
       ], 'res/imgs/buyer4-left.svg', 'res/imgs/buyer4-right.svg'),
       new Customer([
-        { x: 80, y: 30 },
+        { x: 90, y: 30 },
         { x: 390, y: 30 },
         { x: 390, y: 130 },
         { x: 390, y: 30 },

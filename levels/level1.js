@@ -28,9 +28,9 @@ export default () => {
     ],
     exit: new Obstacle(844, 556, 120, 20, { color: 'black' }), // Exit
     items: [
-      new Item(40, 200, 'res/imgs/items/juice.svg'),
+      new Item(40, 200, 'res/imgs/items/cereal.svg'),
       new Item(640, 480, 'res/imgs/items/paper.svg'),
-      new Item(700, 50, 'res/imgs/items/broccoli.svg'),
+      new Item(700, 50, 'res/imgs/items/milk.svg'),
     ],
     customers: [
       new Customer([

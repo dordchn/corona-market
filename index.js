@@ -1,5 +1,6 @@
 import level1 from './levels/level1.js';
 import level2 from './levels/level2.js';
+import level3 from './levels/level3.js';
 import sounds from './utils/sounds.js';
 
 let startButton = document.querySelector('#start_button');
@@ -7,7 +8,7 @@ let topRow = document.querySelector('#top_row');
 let livesContainer = document.querySelector('#lives');
 let levelLabel = document.querySelector('#level_label');
 
-let levels = [level1, level2];
+let levels = [level1, level2, level3];
 let levelIndex = 0;
 
 let game = document.querySelector('x-game');
