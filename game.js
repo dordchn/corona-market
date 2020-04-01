@@ -54,8 +54,9 @@ class Game extends HTMLElement {
   async init() {
     await resources.loadImages([
       'res/imgs/floor.png',
-      'res/imgs/freezer.svg',
+      'res/imgs/freezer.png',
       'res/imgs/vegetables.png',
+      'res/imgs/vegetables-90.png',
       'res/imgs/virus.svg',
 
       // Player
@@ -161,7 +162,14 @@ class Game extends HTMLElement {
     for (let customer of this.level.customers) {
       if (arcCollides(this.level.player.getBoundingArc(), customer.getInfectingArea())) {
         this.stop();
-        this.dispatchEvent(new CustomEvent('loss'));
+        this.dispatchEvent(new CustomEvent('loss', { detail: { cough: true } }));
+        break;
+      }
+    }
+    for (let virus of this.level.viruses) {
+      if (boxCollides(this.level.player.getBoundingBox(), virus.getBoundingBox())) {
+        this.stop();
+        this.dispatchEvent(new CustomEvent('loss', { detail: { cough: false } }));
         break;
       }
     }
@@ -189,6 +197,9 @@ class Game extends HTMLElement {
     // Draw entities
     for (let customer of this.level.customers) {
       customer.render(this.ctx);
+    }
+    for (let virus of this.level.viruses) {
+      virus.render(this.ctx);
     }
 
     this.level.player.render(this.ctx);

@@ -30,11 +30,13 @@ game.addEventListener('win', async () => {
   }
 });
 
-game.addEventListener('loss', async () => {
+game.addEventListener('loss', async evt => {
   gtag('event', 'loss', { 'event_category': 'Level', 'event_label': 'Level' + (levelIndex + 1) });
-  sounds.stopBackground();
-  await sounds.play('res/sounds/cough-boy9.mp3');
   let lives = livesContainer.querySelectorAll('img:not(.used)');
+  sounds.stopBackground();
+  if (evt.detail.cough && lives.length > 0) {
+    await sounds.play('res/sounds/cough-boy9.mp3');
+  }
   if (lives.length > 0) {
     await sounds.play('res/sounds/life.mp3', 0.7);
     lives[0].classList.add('used');
