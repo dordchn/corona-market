@@ -11,7 +11,6 @@ export default () => {
       new Obstacle(80, 556, 120, 20, { color: 'black' }), // Entrance
       new Obstacle(934, 420, 30, 120, { color: '#ddd' }), // Desk
 
-
       // Vertical - Up
       new Obstacle(0, 0, 40, 576),
       new Obstacle(280, 0, 40, 300),

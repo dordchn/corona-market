@@ -55,6 +55,7 @@ class Game extends HTMLElement {
     await resources.loadImages([
       'res/imgs/floor.png',
       'res/imgs/freezer.png',
+      'res/imgs/freezer-90.png',
       'res/imgs/vegetables.png',
       'res/imgs/vegetables-90.png',
       'res/imgs/vegetables-180.png',
