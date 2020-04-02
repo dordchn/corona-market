@@ -16,13 +16,18 @@ x-game {
   display: inline-block;
 }
 
-#start_button {
-  --width: 260px;
+#main_screen {
   position: absolute;
+  width: 100%;
+  padding-top: 150px;
+  text-align: center;
+}
+
+#start_button {
+  display: inline-block;
+  --width: 260px;
   width: var(--width);
   padding-bottom: 8px;
-  top: 226px;
-  left: calc(50% - var(--width) / 2);
   background-color: #7ce96d;
   border: 1px solid black;
   border-radius: 60px;
@@ -31,6 +36,13 @@ x-game {
   font-family: cursive;
   font-size: 70px;
   cursor: pointer;
+  margin-bottom: 50px;
+}
+
+.instructions {
+  display: inline-block;
+  border-radius: 12px;
+  background-color: #0009;
 }
 
 .credits {

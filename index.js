@@ -5,6 +5,7 @@ import level4 from './levels/level4.js';
 import sounds from './utils/sounds.js';
 
 let startButton = document.querySelector('#start_button');
+let mainScreen = document.querySelector('#main_screen');
 let topRow = document.querySelector('#top_row');
 let livesContainer = document.querySelector('#lives');
 let levelLabel = document.querySelector('#level_label');
@@ -54,7 +55,7 @@ game.addEventListener('loss', async evt => {
 function loadMenu() {
   game.reset();
   topRow.style.visibility = 'hidden';
-  startButton.style.display = '';
+  mainScreen.style.display = '';
   Array.from(livesContainer.children).forEach(life => life.classList.add('used'));
 }
 
@@ -62,7 +63,7 @@ startButton.addEventListener('click', async () => {
   if (game.ready) {
     gtag('event', 'start', { 'event_category': 'Game' });
     Array.from(livesContainer.children).forEach(life => life.classList.remove('used'));
-    startButton.style.display = 'none';
+    mainScreen.style.display = 'none';
     loadLevel(levelIndex);
     topRow.style.visibility = 'visible';
   }
