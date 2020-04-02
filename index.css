@@ -12,6 +12,14 @@ body {
   margin-top: 10px;
 }
 
+#loading {
+  position: absolute;
+  width: 100%;
+  font-family: cursive;
+  font-size: 50px;
+  margin-top: 140px;
+}
+
 x-game {
   display: inline-block;
 }

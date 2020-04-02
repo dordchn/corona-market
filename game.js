@@ -52,8 +52,13 @@ class Game extends HTMLElement {
   }
 
   async init() {
+    // Load background
+    await resources.loadImage('res/imgs/floor.png');
+    this.floorPattern = this.ctx.createPattern(resources.get('res/imgs/floor.png'), 'repeat');
+    this.reset();
+
+    // Load game resources
     await resources.loadImages([
-      'res/imgs/floor.png',
       'res/imgs/freezer.png',
       'res/imgs/freezer-90.png',
       'res/imgs/vegetables.png',
@@ -90,8 +95,6 @@ class Game extends HTMLElement {
       'res/imgs/items/tomato.svg',
     ]);
 
-    this.floorPattern = this.ctx.createPattern(resources.get('res/imgs/floor.png'), 'repeat');
-
     document.addEventListener('keydown', evt => {
       if (!this.level) return;
       let playerBB = this.level.player.getBoundingBox();
@@ -107,8 +110,6 @@ class Game extends HTMLElement {
         }
       }
     });
-
-    this.reset();
 
     this.ready = true;
   }

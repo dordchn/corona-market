@@ -4,6 +4,7 @@ import level3 from './levels/level3.js';
 import level4 from './levels/level4.js';
 import sounds from './utils/sounds.js';
 
+let loadingMessage = document.querySelector('#loading');
 let startButton = document.querySelector('#start_button');
 let mainScreen = document.querySelector('#main_screen');
 let topRow = document.querySelector('#top_row');
@@ -14,7 +15,10 @@ let levels = [level1, level2, level3, level4];
 let levelIndex = 0;
 
 let game = document.querySelector('x-game');
-game.init();
+game.init().then(() => {
+  mainScreen.style.display = '';
+  loadingMessage.style.display = 'none';
+});
 
 game.addEventListener('point', async () => {
   await sounds.play('res/sounds/point.mp3', 0.7);
