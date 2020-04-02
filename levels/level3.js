@@ -49,8 +49,8 @@ export default () => {
         { x: 240, y: 260 },
       ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
       new Customer([
-        { x: 790, y: 160 },
-        { x: 950, y: 160 },
+        { x: 785, y: 160 },
+        { x: 955, y: 160 },
       ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
     ],
     viruses: [
