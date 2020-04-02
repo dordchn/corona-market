@@ -9,10 +9,20 @@ class Obstacle {
       h: height,
     };
     this.style = style;
+
+    this.boundingArc = {
+      x: this.box.x + this.box.w / 2,
+      y: this.box.y + this.box.h / 2,
+      r: (this.box.w + this.box.h) / 4, // Size(average) / 2
+    };
   }
 
   getBoundingBox() {
     return this.box;
+  }
+
+  getBoundingArc() {
+    return this.boundingArc;
   }
 
   render(ctx) {

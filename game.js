@@ -169,7 +169,7 @@ class Game extends HTMLElement {
       }
     }
     for (let virus of this.level.viruses) {
-      if (boxCollides(this.level.player.getBoundingBox(), virus.getBoundingBox())) {
+      if (arcCollides(this.level.player.getBoundingArc(), virus.getBoundingArc())) {
         this.stop();
         this.dispatchEvent(new CustomEvent('loss', { detail: { cough: false } }));
         break;
