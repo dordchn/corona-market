@@ -74,7 +74,7 @@ x-game {
   opacity: 0;
   transform: scale(0.01);
   transform-origin: top center;
-  transition: opacity 0.6s, transform 0.6s;
+  transition: opacity 0.4s, transform 0.4s;
 }
 
 #instructions.open {
