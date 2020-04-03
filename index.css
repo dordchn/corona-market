@@ -18,7 +18,13 @@ body {
   margin: 0 -2px 7px -6px;
 }
 
-.container {
+#error_msg {
+  display: none;
+  font-size: 30px;
+  margin: 40px 0;
+}
+
+#container {
   display: inline-block;
   position: relative;
   margin-top: 10px;

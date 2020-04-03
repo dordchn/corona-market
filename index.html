@@ -26,8 +26,11 @@
   --><span>rket</span>
   </div>
 
+  <!-- Errors -->
+  <div id='error_msg'></div>
+
   <!-- Game -->
-  <div class="container">
+  <div id="container">
     <div id="top_row">
       <span id="mute_button" class="sound-button">
         <img class="speaker" src="res/imgs/speaker.svg">
@@ -62,6 +65,16 @@
         href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
   </div>
 
+  <script>
+    var container = document.getElementById('container');
+    var errorMsg = document.getElementById('error_msg');
+    var isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    if (isMobile || !('customElements' in window)) {
+      errorMsg.innerText = isMobile ? 'Mobile is not supported' : 'Unsupported browser version';
+      container.style.display = 'none';
+      errorMsg.style.display = 'block';
+    }
+  </script>
   <script type="module" src="game.js"></script>
   <script type="module" src="index.js"></script>
 
