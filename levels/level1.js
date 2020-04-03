@@ -12,7 +12,7 @@ export default () => {
 
       new Obstacle(600, 50, 300, 100, { src: 'res/imgs/freezer.png' }), // Freezer
       new Obstacle(600, 220, 300, 40), // Shelf below freezer
-      new Obstacle(984, 0, 40, 370), // Right shelf
+      new Obstacle(984, 0, 40, 400), // Right shelf
       new Obstacle(480, 0, 40, 160),
 
       // Bottom shelves
