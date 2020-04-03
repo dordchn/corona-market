@@ -13,8 +13,8 @@ class Item {
     return {
       x: this.x - this.size / 2,
       y: this.y - this.size / 2,
-      w: this.size,
-      h: this.size,
+      width: this.size,
+      height: this.size,
     };
   }
 
