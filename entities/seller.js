@@ -1,10 +1,11 @@
+import Piece from './piece.js';
 import resources from '../utils/resources.js';
 
-class Seller {
+class Seller extends Piece {
   constructor(x, y) {
+    super(x, y, 40, 'res/imgs/seller.svg');
     this.x = x;
     this.y = y;
-    this.size = 40;
     this.popupImg = null;
     this.popupOffset = 0;
   }
@@ -22,8 +23,7 @@ class Seller {
   }
 
   render(ctx) {
-    let img = resources.get('res/imgs/seller.svg');
-    ctx.drawImage(img, this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
+    super.render(ctx);
     if (this.popupImg) {
       ctx.drawImage(this.popupImg, this.x - this.popupImg.width + this.popupOffset, this.y - this.popupImg.height - 10);
     }
