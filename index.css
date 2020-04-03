@@ -1,9 +1,21 @@
 body {
   position: relative;
   text-align: center;
-  margin-top: 30px;
-  font-family: sans-serif;
+  margin-top: 24px;
   user-select: none;
+  font-family: 'Comic Neue', cursive;
+  font-weight: bold;
+}
+
+.logo {
+  font-size: 78px;
+  letter-spacing: 6px;
+}
+
+.logo img {
+  width: 62px;
+  vertical-align: bottom;
+  margin: 0 -2px 7px -6px;
 }
 
 .container {
@@ -35,16 +47,16 @@ x-game {
   display: inline-block;
   --width: 260px;
   width: var(--width);
-  padding-bottom: 8px;
+  padding: 8px 0;
   background-color: #7ce96d;
   border: 1px solid black;
   border-radius: 60px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   color: #333;
-  font-family: cursive;
   font-size: 70px;
   cursor: pointer;
   margin-bottom: 50px;
+  letter-spacing: 2px;
 }
 
 .instructions {
@@ -67,6 +79,7 @@ a {
 }
 
 #top_row {
+  position: relative;
   visibility: hidden;
 }
 
@@ -74,8 +87,8 @@ a {
   display: inline-block;
   position: absolute;
   left: 0;
+  bottom: 4px;
   padding-left: 2px;
-  padding-right: 8px;
   cursor: pointer;
 }
 
@@ -87,13 +100,14 @@ a {
 
 .speaker-text {
   display: inline-block;
-  font-family: cursive;
-  font-size: 18px;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 #lives {
   position: absolute;
   right: 0;
+  bottom: -1px;
 }
 
 .life-icon {
@@ -108,8 +122,7 @@ a {
 
 #level_label {
   display: inline-block;
-  font-family: cursive;
-  font-size: 20px;
-  margin-top: -2px;
-  margin-bottom: 3px;
+  font-size: 22px;
+  line-height: 24px;
+  margin: -2px 0 3px 0;
 }
