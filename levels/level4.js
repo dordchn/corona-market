@@ -1,6 +1,6 @@
 import Player from '../entities/player.js';
 import Obstacle from '../entities/obstacle.js';
-import Item from '../entities/item.js';
+import Piece from '../entities/piece.js';
 import Customer from '../entities/customer.js';
 import Seller from '../entities/seller.js';
 
@@ -28,9 +28,9 @@ export default () => {
     ],
     exit: new Obstacle(844, 556, 120, 20, { color: 'black' }), // Exit
     items: [
-      new Item(70, 70, 'res/imgs/items/broccoli.svg'),
-      new Item(724, 380, 'res/imgs/items/juice.svg'),
-      new Item(954, 60, 'res/imgs/items/bread.svg'),
+      new Piece(70, 70, 40, 'res/imgs/items/broccoli.svg'),
+      new Piece(724, 380, 40, 'res/imgs/items/juice.svg'),
+      new Piece(954, 60, 40, 'res/imgs/items/bread.svg'),
     ],
     customers: [
       // Left column
@@ -62,20 +62,19 @@ export default () => {
     ],
     viruses: [
       // Left
-      new Obstacle(290, 240, 40, 40, { src: 'res/imgs/virus.svg' }),
-      new Obstacle(406, 240, 40, 40, { src: 'res/imgs/virus.svg' }),
-      new Obstacle(348, 355, 40, 40, { src: 'res/imgs/virus.svg' }),
-      new Obstacle(290, 470, 40, 40, { src: 'res/imgs/virus.svg' }),
-      new Obstacle(406, 470, 40, 40, { src: 'res/imgs/virus.svg' }),
+      new Piece(310, 260, 40, 'res/imgs/virus.svg'),
+      new Piece(426, 260, 40, 'res/imgs/virus.svg'),
+      new Piece(368, 375, 40, 'res/imgs/virus.svg'),
+      new Piece(310, 490, 40, 'res/imgs/virus.svg'),
+      new Piece(426, 490, 40, 'res/imgs/virus.svg'),
       // Right
-      new Obstacle(790, 160, 40, 40, { src: 'res/imgs/virus.svg' }),
-      new Obstacle(835, 160, 40, 40, { src: 'res/imgs/virus.svg' }),
-      // new Obstacle(880, 160, 40, 40, { src: 'res/imgs/virus.svg' }), 
-      new Obstacle(850, 260, 40, 40, { src: 'res/imgs/virus.svg' }),
-      new Obstacle(895, 260, 40, 40, { src: 'res/imgs/virus.svg' }),
-      new Obstacle(940, 260, 40, 40, { src: 'res/imgs/virus.svg' }), 
-      new Obstacle(790, 360, 40, 40, { src: 'res/imgs/virus.svg' }),
-      new Obstacle(835, 360, 40, 40, { src: 'res/imgs/virus.svg' }),
+      new Piece(810, 180, 40, 'res/imgs/virus.svg'),
+      new Piece(855, 180, 40, 'res/imgs/virus.svg'),
+      new Piece(870, 280, 40, 'res/imgs/virus.svg'),
+      new Piece(915, 280, 40, 'res/imgs/virus.svg'),
+      new Piece(960, 280, 40, 'res/imgs/virus.svg'),
+      new Piece(810, 380, 40, 'res/imgs/virus.svg'),
+      new Piece(855, 380, 40, 'res/imgs/virus.svg'),
     ],
     seller: new Seller(990, 480), // Seller
   };

@@ -154,7 +154,7 @@ class Game extends HTMLElement {
           break;
         }
       }
-      let inStore = boxContains({ x: 0, y: 0, w: this.canvas.width, h: this.canvas.height }, boundingBox);
+      let inStore = boxContains({ x: 0, y: 0, width: this.canvas.width, height: this.canvas.height }, boundingBox);
       return !collides && inStore;
     });
     for (let customer of this.level.customers) {

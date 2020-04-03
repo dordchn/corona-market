@@ -1,10 +1,10 @@
 
 function boxCollides(box1, box2) {
   return !(
-    box1.x + box1.w <= box2.x ||
-    box1.x > box2.x + box2.w ||
-    box1.y + box1.h <= box2.y ||
-    box1.y > box2.y + box2.h
+    box1.x + box1.width <= box2.x ||
+    box1.x > box2.x + box2.width ||
+    box1.y + box1.height <= box2.y ||
+    box1.y > box2.y + box2.height
   );
 }
 
@@ -12,8 +12,8 @@ function boxCollides(box1, box2) {
 function boxContains(box1, box2) {
   return box2.x > box1.x &&
     box2.y > box1.y &&
-    box2.x + box2.w <= box1.x + box1.w &&
-    box2.y + box2.h <= box1.y + box1.h;
+    box2.x + box2.width <= box1.x + box1.width &&
+    box2.y + box2.height <= box1.y + box1.height;
 }
 
 function arcCollides(arc1, arc2) {

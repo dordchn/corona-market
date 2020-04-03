@@ -14,8 +14,8 @@ class Player {
     return {
       x: this.x - this.size / 2,
       y: this.y - this.size / 2,
-      w: this.size,
-      h: this.size,
+      width: this.size,
+      height: this.size,
     };
   }
 
@@ -55,8 +55,8 @@ class Player {
       let newBoundingBox = {
         x: newPos.x - this.size / 2,
         y: newPos.y - this.size / 2,
-        w: this.size,
-        h: this.size,
+        width: this.size,
+        height: this.size,
       };
       if (validator(newBoundingBox)) {
         this.x = newPos.x;
