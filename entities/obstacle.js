@@ -1,24 +1,16 @@
+import Entity from './entity.js';
 import resources from '../utils/resources.js';
 
-class Obstacle {
-  constructor(x, y, width, height, style = {color: '#8b5a3b', shade: true}) {
-    this.box = {
-      x: x,
-      y: y,
-      w: width,
-      h: height,
-    };
+class Obstacle extends Entity {
+  constructor(x, y, width, height, style = { color: '#8b5a3b', shade: true }) {
+    super(x, y, width, height);
     this.style = style;
 
     this.boundingArc = {
-      x: this.box.x + this.box.w / 2,
-      y: this.box.y + this.box.h / 2,
-      r: (this.box.w + this.box.h) / 4, // Size(average) / 2
+      x: this.rect.x + this.rect.width / 2,
+      y: this.rect.y + this.rect.height / 2,
+      r: (this.rect.width + this.rect.height) / 4, // Size(average) / 2
     };
-  }
-
-  getBoundingBox() {
-    return this.box;
   }
 
   getBoundingArc() {
@@ -26,23 +18,22 @@ class Obstacle {
   }
 
   render(ctx) {
-    // todo: draw item from linear pattern resource
     if (this.style && this.style.src) {
       let img = resources.get(this.style.src);
-      ctx.drawImage(img, this.box.x, this.box.y, this.box.w, this.box.h);
+      ctx.drawImage(img, this.rect.x, this.rect.y, this.rect.width, this.rect.height);
     } else {
       ctx.save();
       ctx.beginPath();
       ctx.strokeStyle = '#000000';
       ctx.fillStyle = this.style.color;
-      ctx.rect(this.box.x, this.box.y, this.box.w, this.box.h);
+      ctx.rect(this.rect.x, this.rect.y, this.rect.width, this.rect.height);
       ctx.fill();
       ctx.stroke();
       ctx.restore();
 
       if (this.style.shade) {
         ctx.fillStyle = 'rgba(255,255,255,0.1)';
-        ctx.fillRect(this.box.x + this.box.w - 20, this.box.y, 10, this.box.h);
+        ctx.fillRect(this.rect.x + this.rect.width - 20, this.rect.y, 10, this.rect.height);
       }
     }
   }
