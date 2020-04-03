@@ -5,16 +5,6 @@ class Obstacle extends Entity {
   constructor(x, y, width, height, style = { color: '#8b5a3b', shade: true }) {
     super(x, y, width, height);
     this.style = style;
-
-    this.boundingArc = {
-      x: this.rect.x + this.rect.width / 2,
-      y: this.rect.y + this.rect.height / 2,
-      r: (this.rect.width + this.rect.height) / 4, // Size(average) / 2
-    };
-  }
-
-  getBoundingArc() {
-    return this.boundingArc;
   }
 
   render(ctx) {

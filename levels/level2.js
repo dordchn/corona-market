@@ -1,6 +1,7 @@
 import Player from '../entities/player.js';
 import Obstacle from '../entities/obstacle.js';
 import Item from '../entities/item.js';
+import Piece from '../entities/piece.js';
 import Customer from '../entities/customer.js';
 import Seller from '../entities/seller.js';
 
@@ -54,7 +55,7 @@ export default () => {
       ], 'res/imgs/buyer1-left.svg', 'res/imgs/buyer1-right.svg'),
     ],
     viruses: [
-      new Obstacle(540, 302, 40, 40, { src: 'res/imgs/virus.svg' }),
+      new Piece(560, 322, 40, 'res/imgs/virus.svg'),
     ],
     seller: new Seller(990, 480), // Seller
   };

@@ -17,8 +17,9 @@ class Entity {
 
   render(ctx) {
     if (this.res) {
+      // console.log(this.constructor.name);
       let img = resources.get(this.res);
-      ctx.drawImage(img, this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
+      ctx.drawImage(img, this.rect.x, this.rect.y, this.rect.width, this.rect.height);
     } else { // Default rendering (missing resource)
       ctx.fillStyle = 'white';
       ctx.strokeStyle = 'black';
