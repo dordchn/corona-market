@@ -39,7 +39,7 @@ x-game {
 #main_screen {
   position: absolute;
   width: 100%;
-  padding-top: 150px;
+  padding-top: 200px;
   text-align: center;
 }
 
@@ -55,14 +55,31 @@ x-game {
   color: #333;
   font-size: 70px;
   cursor: pointer;
-  margin-bottom: 50px;
+  margin-bottom: 45px;
   letter-spacing: 2px;
 }
 
-.instructions {
+#howto_button {
   display: inline-block;
+  font-size: 24px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+#instructions {
+  display: inline-block;
+  margin-top: 6px;
   border-radius: 12px;
   background-color: #0009;
+  opacity: 0;
+  transform: scale(0.01);
+  transform-origin: top center;
+  transition: opacity 0.6s, transform 0.6s;
+}
+
+#instructions.open {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .credits {

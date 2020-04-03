@@ -5,8 +5,10 @@ import level4 from './levels/level4.js';
 import sounds from './utils/sounds.js';
 
 let loadingMessage = document.querySelector('#loading');
-let startButton = document.querySelector('#start_button');
 let mainScreen = document.querySelector('#main_screen');
+let startButton = document.querySelector('#start_button');
+let howtoButton = document.querySelector('#howto_button');
+let instructions = document.querySelector('#instructions');
 let topRow = document.querySelector('#top_row');
 let livesContainer = document.querySelector('#lives');
 let levelLabel = document.querySelector('#level_label');
@@ -71,6 +73,10 @@ startButton.addEventListener('click', async () => {
     loadLevel(levelIndex);
     topRow.style.visibility = 'visible';
   }
+});
+
+howtoButton.addEventListener('click', () => {
+  instructions.classList.toggle('open');
 });
 
 const muteButton = document.querySelector('#mute_button');
