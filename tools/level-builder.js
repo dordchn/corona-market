@@ -14,7 +14,7 @@ const CELL_SIZE = 44;
 async function readLvlFile(path) {
   try {
     const text = await readFile(path, 'utf8');
-    return text.replace(/[\ \|]/g, '').split('\n').filter(l=>l[0]!='+').filter(f => f.length);
+    return text.replace(/[\ \|]/g, '').split('\n').filter(l => l[0] != '+').filter(f => f.length);
 
   } catch (err) {
     console.log('Error', err);
@@ -57,16 +57,22 @@ function removeBlock(mat, block) {
   }
 }
 
+function posToCoord(row, col) {
+  return {
+    x: col ? HORIZONTAL_MARGINS + col * CELL_SIZE : 0,
+    y: row ? VERTICAL_MARGINS + row * CELL_SIZE : 0
+  }
+}
+
 function blockToCode(block) {
-  const x = block.col ? HORIZONTAL_MARGINS + block.col * CELL_SIZE : 0;
-  const y = block.row ? VERTICAL_MARGINS + block.row * CELL_SIZE : 0;
+  const coordinates = posToCoord(block.row, block.col);
   let w = CELL_SIZE * block.width;
   if (block.col == 0) w += HORIZONTAL_MARGINS;
   if (block.col + block.width == MAP_WIDTH) w += HORIZONTAL_MARGINS;
   let h = CELL_SIZE * block.height;
   if (block.row == 0) h += VERTICAL_MARGINS;
   if (block.row + block.row == MAP_HEIGHT) h += VERTICAL_MARGINS;
-  return `new Obstacle(${x}, ${y}, ${w}, ${h}),`;
+  return `new Obstacle(${coordinates.x}, ${coordinates.y}, ${w}, ${h}),`;
 }
 
 async function main() {
@@ -75,6 +81,18 @@ async function main() {
 
   // console.log('input:', levelMap);
 
+  // Print items
+  levelMap.forEach((row, i) => {
+    const r = /O/g;
+    let match;
+    while (match = r.exec(row)) {
+      const coordinates = posToCoord(i, match.index);
+      console.log(`new Piece(${coordinates.x + CELL_SIZE / 2}, ${coordinates.y + CELL_SIZE / 2}, 40, 'res/imgs/items/paper.svg'),`);
+    }
+  });
+  console.log('');
+
+  // Print obstacles
   const findBlocks = mat => {
     const transposedMat = transpose(mat);
     const rowBlocks = collectXsRows(mat, 1);
@@ -101,10 +119,10 @@ async function main() {
 
   // Print blocks
   console.log(finalBlocks.map(blockToCode).join('\n'));
+
 }
 
-
-console.log(blockToCode({ row: 0, col: 13, width: 1, height: 1 }));
-console.log(blockToCode({ row: 5, col: 9, width: 1, height: 1 }));
+// console.log(blockToCode({ row: 0, col: 13, width: 1, height: 1 }));
+// console.log(blockToCode({ row: 5, col: 9, width: 1, height: 1 }));
 
 main();
