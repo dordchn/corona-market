@@ -10,21 +10,21 @@ import Seller from '../entities/seller.js';
   - First & last rows are 46px.
   - First & last cols are 50px.
   Map:
-+ - - - - - - - - - - - - - - - - - - - - - - - +
-|                                               |
-|                                               |
-|                                               |
-|                                               |
-|                                               |
-|                                               |
-|                                               |
-|                                               |
-|                                               |
-|                                               |
-|                                               |
-|                                               |
-|                                               |
-+ - - - - - - - - - - - - - - - - - - - - - - - +
++-----------------------+
+|XX   XXX    VVVVVVVVVV |
+|   XXO   XX VVVVVVVVVV | 
+| X   X XX X            |
+| XXX   XX XXXXXXXX    X|
+|   XXXXX     X    X   X|
+| X  X  X FFF X X  X X  |
+| X X   X FFF X XX   X X|
+| XO  X   FFF X   X X  X|
+| XXX X X FFF XXX X XX X|
+|         FFF   X X    X|
+|XX  XX X FFF X X  XX   |
+|X    X X FFF X OXX     |
+|X PP X X     XX X  EE  |
++-----------------------+
 */
 
 export default () => {
@@ -34,8 +34,8 @@ export default () => {
       new Obstacle(80, 556, 120, 20, { color: 'black' }), // Entrance
       // new Obstacle(600, 50, 300, 100, { src: 'res/imgs/freezer.png' }), // Freezer
 
-      new Obstacle(0, 0, 45, 100), // Left shelf
-      new Obstacle(90, 0, 45, 100), // Left shelf
+      new Obstacle(0, 0, 44, 100), // Left shelf
+      new Obstacle(88, 0, 44, 100), // Left shelf
       
       
       // new Obstacle(984, 0, 40, 400), // Right shelf      
