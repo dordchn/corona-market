@@ -52,21 +52,23 @@ function collectHorizontalXs(mat, minLength) {
 
 async function main() {
   const levelPath = process.argv[2];
-  const levelMap = await readLvlFile(levelPath);
+  let levelMap = await readLvlFile(levelPath);
   const mapWidth = levelMap[0].length;
   const mapHeight = levelMap.length;
+  const blocks = [];
 
   console.log('input:', levelMap);
 
-  // Choose rows
-  let blocks = collectHorizontalXs(levelMap, 2);
-
   // Choose columns
-  let levelMapT = transpose(levelMap);
-  const transposedBlocks = collectHorizontalXs(levelMapT, 1);
-  blocks = blocks.concat(transposedBlocks.map(block => {
+  const levelMapT = transpose(levelMap);
+  const transposedBlocks = collectHorizontalXs(levelMapT, 2);
+  blocks.push(...transposedBlocks.map(block => {
     return { row: block.col, col: block.row, width: block.height, height: block.width }
   }));
+
+  // Choose rows
+  levelMap = transpose(levelMapT);
+  blocks.push(...collectHorizontalXs(levelMap, 1));
 
   // Print blocks
   console.log(
