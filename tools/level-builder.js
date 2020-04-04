@@ -75,6 +75,53 @@ function blockToCode(block) {
   return `new Obstacle(${coordinates.x}, ${coordinates.y}, ${w}, ${h}),`;
 }
 
+function generateBlocks(levelMat, preferVertical = true, longFirst = false) {
+  const transposeBlock = block => {
+    return { row: block.col, col: block.row, width: block.height, height: block.width }
+  };
+
+  if (!longFirst && !preferVertical) {
+    const rowBlocks = collectXsRows(levelMat, 2);
+    rowBlocks.forEach(b => removeBlock(levelMat, b));
+    const transposedMat = transpose(levelMat);
+    const colBlocks = collectXsRows(transposedMat, 1).map(transposeBlock);
+    return [...rowBlocks, ...colBlocks];
+
+  } else if (!longFirst && preferVertical) {
+    const transposedMat = transpose(levelMat);
+    const colBlocks = collectXsRows(transposedMat, 2);
+    colBlocks.forEach(b => removeBlock(transposedMat, b));
+    levelMat = transpose(transposedMat);
+    const rowBlocks = collectXsRows(levelMat, 1);
+    return [...rowBlocks, ...colBlocks.map(transposeBlock)];
+  }
+
+  // Long first
+  const preferVerticalCoeff = preferVertical ? 1 : -1;
+  const findBlocks = mat => {
+    const transposedMat = transpose(mat);
+    const rowBlocks = collectXsRows(mat, 1);
+    const colBlocks = collectXsRows(transposedMat, 2).map(transposeBlock);
+    return [...rowBlocks, ...colBlocks];
+  }
+
+  // Sort blocks by area, break equality by height
+  const sortBlocks = blocks => blocks.sort((b1, b2) => {
+    const areaDiff = b2.width * b2.height - b1.width * b1.height;
+    return areaDiff > 0 ? 1 : (areaDiff == 0 && (b2.height - b1.height) * preferVerticalCoeff > 0) ? 1 : -1;
+  });
+
+  const finalBlocks = [];
+  let blocks = sortBlocks(findBlocks(levelMat));
+  while (blocks.length > 0) {
+    finalBlocks.push(blocks[0]);
+    removeBlock(levelMat, blocks[0]);
+    blocks = sortBlocks(findBlocks(levelMat)); // TODO: Should be done only if the new top block is missing Xs
+    // console.log(blocks);
+  }
+  return finalBlocks;
+}
+
 async function main() {
   const levelPath = process.argv[2];
   let levelMap = await readLvlFile(levelPath);
@@ -92,33 +139,9 @@ async function main() {
   });
   console.log('');
 
-  // Print obstacles
-  const findBlocks = mat => {
-    const transposedMat = transpose(mat);
-    const rowBlocks = collectXsRows(mat, 1);
-    const colBlocks = collectXsRows(transposedMat, 2).map(block => {
-      return { row: block.col, col: block.row, width: block.height, height: block.width }
-    });
-    return [...rowBlocks, ...colBlocks];
-  }
-
-  // Sort blocks by area, break equality by height
-  const sortBlocks = blocks => blocks.sort((b1, b2) => {
-    const areaDiff = b2.width * b2.height - b1.width * b1.height;
-    return areaDiff > 0 ? 1 : (areaDiff == 0 && b2.height > b1.height) ? 1 : -1;
-  });
-
-  const finalBlocks = [];
-  let blocks = sortBlocks(findBlocks(levelMap));
-  while (blocks.length > 0) {
-    finalBlocks.push(blocks[0]);
-    removeBlock(levelMap, blocks[0]);
-    blocks = sortBlocks(findBlocks(levelMap)); // TODO: Should be done only if the new top block is missing Xs
-    // console.log(blocks);
-  }
-
   // Print blocks
-  console.log(finalBlocks.map(blockToCode).join('\n'));
+  const blocks = generateBlocks(levelMap, /*preferVertical = */false, /*longFirst = */true);
+  console.log(blocks.map(blockToCode).join('\n'));
 
 }
 
