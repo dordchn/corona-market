@@ -28,11 +28,9 @@ function transpose(mat) {
 }
 
 /**
- * Finds horizontal rows of Xs, and:
- * 1. Replace them with spaces in the given matrix
- * 2. Returns a list of blocks describing those rows.
+ * Finds horizontal rows of Xs, and returns a list of blocks describing them.
  */
-function collectHorizontalXs(mat, minLength) {
+function collectXsRows(mat, minLength) {
   const blocks = [];
   mat.forEach((row, i) => {
     const r = /X+/g;
@@ -41,13 +39,18 @@ function collectHorizontalXs(mat, minLength) {
       // console.log(match);
       if (match[0].length < minLength) continue;
 
-      blocks.push({ row: i, col: match.index, width: match[0].length, height: 1 });
-      mat[i] = mat[i].substring(0, match.index)
-        + ' '.repeat(match[0].length)
-        + mat[i].substring(match.index + match[0].length);
+      const block = { row: i, col: match.index, width: match[0].length, height: 1 };
+      blocks.push(block);
+      removeRowBlock(mat, block);
     }
   });
   return blocks;
+}
+
+function removeRowBlock(mat, block) {
+  mat[block.row] = mat[block.row].substring(0, block.col)
+        + ' '.repeat(block.width)
+        + mat[block.row].substring(block.col + block.width); 
 }
 
 async function main() {
@@ -61,14 +64,14 @@ async function main() {
 
   // Choose columns
   const levelMapT = transpose(levelMap);
-  const transposedBlocks = collectHorizontalXs(levelMapT, 2);
+  const transposedBlocks = collectXsRows(levelMapT, 2);
   blocks.push(...transposedBlocks.map(block => {
     return { row: block.col, col: block.row, width: block.height, height: block.width }
   }));
 
   // Choose rows
   levelMap = transpose(levelMapT);
-  blocks.push(...collectHorizontalXs(levelMap, 1));
+  blocks.push(...collectXsRows(levelMap, 1));
 
   // Print blocks
   console.log(
