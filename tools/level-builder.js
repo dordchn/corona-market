@@ -36,17 +36,30 @@ async function main() {
   console.log('input:', levelMap);
   const blocks = [];
 
+  // Choose rows
   levelMap.forEach((row, i) => {
     const r = /X+/g;
     let match;
     while (match = r.exec(row)) {
       // console.log(match);
+      if (match[0].length < 2) continue;
+
       blocks.push({ row: i, col: match.index, width: match[0].length, height: 1 });
-      // levelMap[i] = levelMap[i].substring(0, match.index)
-      //   + ' '.repeat(match[0].length)
-      //   + levelMap[i].substring(match.index + match[0].length);
+      levelMap[i] = levelMap[i].substring(0, match.index)
+        + ' '.repeat(match[0].length)
+        + levelMap[i].substring(match.index + match[0].length);
     }
-    // console.log('\n\n');
+  });
+
+  // Choose columns
+  let transposed = transpose(levelMap);
+  transposed.forEach((col, j) => {
+    const r = /X+/g;
+    let match;
+    while (match = r.exec(col)) {
+      // console.log(match);
+      blocks.push({ row: match.index, col: j, width: 1, height: match[0].length });
+    }
   });
 
   // Print blocks
