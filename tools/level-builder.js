@@ -5,6 +5,8 @@ const fs = require('fs');
 const util = require('util');
 const readFile = util.promisify(fs.readFile);
 
+const MAP_WIDTH = 23;
+const MAP_HEIGHT = 13;
 const VERTICAL_MARGINS = 2;
 const HORIZONTAL_MARGINS = 6;
 const CELL_SIZE = 44;
@@ -55,11 +57,21 @@ function removeBlock(mat, block) {
   }
 }
 
+function blockToCode(block) {
+  const x = block.col ? HORIZONTAL_MARGINS + block.col * CELL_SIZE : 0;
+  const y = block.row ? VERTICAL_MARGINS + block.row * CELL_SIZE : 0;
+  let w = CELL_SIZE * block.width;
+  if (block.col == 0) w += HORIZONTAL_MARGINS;
+  if (block.col + block.width == MAP_WIDTH) w += HORIZONTAL_MARGINS;
+  let h = CELL_SIZE * block.height;
+  if (block.row == 0) h += VERTICAL_MARGINS;
+  if (block.row + block.row == MAP_HEIGHT) h += VERTICAL_MARGINS;
+  return `new Obstacle(${x}, ${y}, ${w}, ${h}),`;
+}
+
 async function main() {
   const levelPath = process.argv[2];
   let levelMap = await readLvlFile(levelPath);
-  const mapWidth = levelMap[0].length;
-  const mapHeight = levelMap.length;
 
   console.log('input:', levelMap);
 
@@ -80,26 +92,15 @@ async function main() {
 
   const finalBlocks = [];
   let blocks = sortBlocks(findBlocks(levelMap));
-  // console.log(blocks);
   while (blocks.length > 0) {
     finalBlocks.push(blocks[0]);
     removeBlock(levelMap, blocks[0]);
     blocks = sortBlocks(findBlocks(levelMap)); // TODO: Should be done only if the new top block is missing Xs
+    // console.log(blocks);
   }
 
   // Print blocks
-  console.log(
-    finalBlocks.map(block => {
-      const x = block.col ? HORIZONTAL_MARGINS + block.col * CELL_SIZE : 0;
-      const y = block.row ? VERTICAL_MARGINS + block.row * CELL_SIZE : 0;
-      let w = CELL_SIZE * block.width;
-      if (block.col == 0) w += HORIZONTAL_MARGINS;
-      if (block.col + block.width == mapWidth) w += HORIZONTAL_MARGINS;
-      let h = CELL_SIZE * block.height;
-      if (block.row == 0) h += VERTICAL_MARGINS;
-      if (block.row + block.row == mapHeight) h += VERTICAL_MARGINS;
-      return `new Obstacle(${x}, ${y}, ${w}, ${h}),`;
-    }).join('\n'));
+  console.log(finalBlocks.map(blockToCode).join('\n'));
 }
 
 main();
