@@ -41,16 +41,18 @@ function collectXsRows(mat, minLength) {
 
       const block = { row: i, col: match.index, width: match[0].length, height: 1 };
       blocks.push(block);
-      removeRowBlock(mat, block);
+      removeBlock(mat, block);
     }
   });
   return blocks;
 }
 
-function removeRowBlock(mat, block) {
-  mat[block.row] = mat[block.row].substring(0, block.col)
-        + ' '.repeat(block.width)
-        + mat[block.row].substring(block.col + block.width); 
+function removeBlock(mat, block) {
+  for (let i = block.row; i < block.row + block.height; i++) {
+    mat[i] = mat[i].substring(0, block.col)
+      + ' '.repeat(block.width)
+      + mat[i].substring(block.col + block.width);
+  }
 }
 
 async function main() {
