@@ -32,34 +32,70 @@ export default () => {
     player: new Player(/*x=*/ 140, /*y=*/ 530, /*rotation=*/ 0),
     obstacles: [
       new Obstacle(80, 556, 120, 20, { color: 'black' }), // Entrance
-      // new Obstacle(600, 50, 300, 100, { src: 'res/imgs/freezer.png' }), // Freezer
 
-      new Obstacle(0, 0, 44, 100), // Left shelf
-      new Obstacle(88, 0, 44, 100), // Left shelf
-      
-      
+      new Obstacle(584, 0, 440, 80, { src: 'res/imgs/vegetables.png' }), // Vegetables
+      new Obstacle(418, 226, 100, 300, { src: 'res/imgs/freezer-90.png' }), // Freezer
+
+      new Obstacle(446, 134, 352, 44),
+      new Obstacle(578, 178, 44, 220),
+      new Obstacle(314, 90, 44, 220),
+      new Obstacle(50, 310, 220, 44),
+      new Obstacle(974, 266, 50, 176),
+      new Obstacle(314, 398, 44, 176),
+      new Obstacle(138, 178, 176, 44),
+      new Obstacle(754, 310, 44, 132),
+      new Obstacle(666, 354, 44, 132),
+      new Obstacle(578, 442, 44, 132),
+      new Obstacle(226, 442, 44, 132),
+      new Obstacle(0, 442, 50, 132),
+      new Obstacle(226, 0, 132, 46),
+      new Obstacle(974, 134, 50, 88),
+      new Obstacle(886, 222, 44, 88),
+      new Obstacle(842, 310, 44, 88),
+      new Obstacle(798, 178, 44, 88),
+      new Obstacle(710, 486, 44, 88),
+      new Obstacle(666, 222, 44, 88),
+      new Obstacle(446, 46, 44, 88),
+      new Obstacle(358, 90, 44, 88),
+      new Obstacle(182, 222, 44, 88),
+      new Obstacle(182, 46, 44, 88),
+      new Obstacle(798, 442, 88, 44),
+      new Obstacle(50, 134, 88, 44),
+      new Obstacle(0, 0, 94, 46),
+      new Obstacle(622, 530, 44, 44),
+      new Obstacle(754, 486, 44, 44),
+      new Obstacle(182, 442, 44, 44),
+      new Obstacle(50, 442, 44, 44),
+      new Obstacle(886, 354, 44, 44),
+      new Obstacle(622, 354, 44, 44),
+      new Obstacle(710, 266, 44, 44),
+      new Obstacle(50, 266, 44, 44),
+      new Obstacle(226, 90, 44, 44),
+      new Obstacle(402, 46, 44, 44),
+      new Obstacle(138, 46, 44, 44),
+
+
       // new Obstacle(984, 0, 40, 400), // Right shelf      
-      // new Obstacle(40, 0, 440, 80, { src: 'res/imgs/vegetables.png' }), // Vegetables
 
       new Obstacle(934, 420, 30, 120, { color: '#ddd' }), // Desk
     ],
     exit: new Obstacle(844, 556, 120, 20, { color: 'black' }), // Exit
     items: [
-      new Piece(40, 200, 40, 'res/imgs/items/cereal.svg'),
-      new Piece(640, 480, 40, 'res/imgs/items/paper.svg'),
-      new Piece(700, 50, 40, 'res/imgs/items/milk.svg'),
+      new Piece(248, 68, 40, 'res/imgs/items/paper.svg'),
+      new Piece(160, 288, 40, 'res/imgs/items/paper.svg'),
+      new Piece(688, 508, 40, 'res/imgs/items/paper.svg'),
     ],
     customers: [
-      new Customer([
-        { x: 560, y: 25 },
-        { x: 940, y: 25 },
-        { x: 940, y: 180 },
-        { x: 560, y: 180 },
-      ], 'res/imgs/buyer1-left.svg', 'res/imgs/buyer1-right.svg'),
-      new Customer([
-        { x: 560, y: 360 },
-        { x: 560, y: 550 },
-      ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
+      // new Customer([
+      //   { x: 560, y: 25 },
+      //   { x: 940, y: 25 },
+      //   { x: 940, y: 180 },
+      //   { x: 560, y: 180 },
+      // ], 'res/imgs/buyer1-left.svg', 'res/imgs/buyer1-right.svg'),
+      // new Customer([
+      //   { x: 560, y: 360 },
+      //   { x: 560, y: 550 },
+      // ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
     ],
     viruses: [],
     seller: new Seller(990, 480), // Seller
