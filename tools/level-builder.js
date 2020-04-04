@@ -4,6 +4,10 @@ const fs = require('fs');
 const util = require('util');
 const readFile = util.promisify(fs.readFile);
 
+const VERTICAL_MARGINS = 2;
+const HORIZONTAL_MARGINS = 6;
+const CELL_SIZE = 44;
+
 async function readLvlFile(path) {
   try {
     const text = await readFile(path, 'utf8');
@@ -26,6 +30,9 @@ function transpose(mat) {
 async function main() {
   const levelPath = process.argv[2];
   const levelMap = await readLvlFile(levelPath);
+  const mapWidth = levelMap[0].length;
+  const mapHeight = levelMap.length;
+
   console.log('input:', levelMap);
   const blocks = [];
 
@@ -43,17 +50,16 @@ async function main() {
   });
 
   // Print blocks
-  console.log(blocks)
   console.log(
     blocks.map(block => {
-      const x = block.col ? 6 + block.col * 44 : 0;
-      const y = block.row ? 2 + block.row * 44 : 0;
-      let w = 44 * block.width;
-      if (block.col == 0) w += 6;
-      if (block.col + block.width == 23) w += 6;
-      let h = 44 * block.height;
-      if (block.row == 0) h += 2;
-      if (block.row + block.row == 13) h += 2;
+      const x = block.col ? HORIZONTAL_MARGINS + block.col * CELL_SIZE : 0;
+      const y = block.row ? VERTICAL_MARGINS + block.row * CELL_SIZE : 0;
+      let w = CELL_SIZE * block.width;
+      if (block.col == 0) w += HORIZONTAL_MARGINS;
+      if (block.col + block.width == mapWidth) w += HORIZONTAL_MARGINS;
+      let h = CELL_SIZE * block.height;
+      if (block.row == 0) h += VERTICAL_MARGINS;
+      if (block.row + block.row == mapHeight) h += VERTICAL_MARGINS;
       return `new Obstacle(${x}, ${y}, ${w}, ${h}),`;
     }).join('\n'));
 }
