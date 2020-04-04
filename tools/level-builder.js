@@ -27,6 +27,29 @@ function transpose(mat) {
   return transposed;
 }
 
+/**
+ * Finds horizontal rows of Xs, and:
+ * 1. Replace them with spaces in the given matrix
+ * 2. Returns a list of blocks describing those rows.
+ */
+function collectHorizontalXs(mat, minLength) {
+  const blocks = [];
+  mat.forEach((row, i) => {
+    const r = /X+/g;
+    let match;
+    while (match = r.exec(row)) {
+      // console.log(match);
+      if (match[0].length < minLength) continue;
+
+      blocks.push({ row: i, col: match.index, width: match[0].length, height: 1 });
+      mat[i] = mat[i].substring(0, match.index)
+        + ' '.repeat(match[0].length)
+        + mat[i].substring(match.index + match[0].length);
+    }
+  });
+  return blocks;
+}
+
 async function main() {
   const levelPath = process.argv[2];
   const levelMap = await readLvlFile(levelPath);
@@ -34,33 +57,16 @@ async function main() {
   const mapHeight = levelMap.length;
 
   console.log('input:', levelMap);
-  const blocks = [];
 
   // Choose rows
-  levelMap.forEach((row, i) => {
-    const r = /X+/g;
-    let match;
-    while (match = r.exec(row)) {
-      // console.log(match);
-      if (match[0].length < 2) continue;
-
-      blocks.push({ row: i, col: match.index, width: match[0].length, height: 1 });
-      levelMap[i] = levelMap[i].substring(0, match.index)
-        + ' '.repeat(match[0].length)
-        + levelMap[i].substring(match.index + match[0].length);
-    }
-  });
+  let blocks = collectHorizontalXs(levelMap, 2);
 
   // Choose columns
-  let transposed = transpose(levelMap);
-  transposed.forEach((col, j) => {
-    const r = /X+/g;
-    let match;
-    while (match = r.exec(col)) {
-      // console.log(match);
-      blocks.push({ row: match.index, col: j, width: 1, height: match[0].length });
-    }
-  });
+  let levelMapT = transpose(levelMap);
+  const transposedBlocks = collectHorizontalXs(levelMapT, 1);
+  blocks = blocks.concat(transposedBlocks.map(block => {
+    return { row: block.col, col: block.row, width: block.height, height: block.width }
+  }));
 
   // Print blocks
   console.log(
@@ -77,8 +83,4 @@ async function main() {
     }).join('\n'));
 }
 
-try {
-  main();
-} catch (err) {
-  console.log(err);
-}
+main();
