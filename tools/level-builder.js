@@ -1,4 +1,5 @@
 // Node tool created in order to simplify level designs (Created especially for level 4).
+// Note: This tool is pretty hack for now, needs improvement (mostly performance-wise)
 
 const fs = require('fs');
 const util = require('util');
@@ -41,7 +42,6 @@ function collectXsRows(mat, minLength) {
 
       const block = { row: i, col: match.index, width: match[0].length, height: 1 };
       blocks.push(block);
-      removeBlock(mat, block);
     }
   });
   return blocks;
@@ -60,24 +60,36 @@ async function main() {
   let levelMap = await readLvlFile(levelPath);
   const mapWidth = levelMap[0].length;
   const mapHeight = levelMap.length;
-  const blocks = [];
 
   console.log('input:', levelMap);
 
-  // Choose columns
-  const levelMapT = transpose(levelMap);
-  const transposedBlocks = collectXsRows(levelMapT, 2);
-  blocks.push(...transposedBlocks.map(block => {
-    return { row: block.col, col: block.row, width: block.height, height: block.width }
-  }));
+  const findBlocks = mat => {
+    const transposedMat = transpose(mat);
+    const rowBlocks = collectXsRows(mat, 1);
+    const colBlocks = collectXsRows(transposedMat, 2).map(block => {
+      return { row: block.col, col: block.row, width: block.height, height: block.width }
+    });
+    return [...rowBlocks, ...colBlocks];
+  }
 
-  // Choose rows
-  levelMap = transpose(levelMapT);
-  blocks.push(...collectXsRows(levelMap, 1));
+  // Sort blocks by area, break equality by height
+  const sortBlocks = blocks => blocks.sort((b1, b2) => {
+    const areaDiff = b2.width * b2.height - b1.width * b1.height;
+    return areaDiff > 0 ? 1 : (areaDiff == 0 && b2.height > b1.height) ? 1 : -1;
+  });
+
+  const finalBlocks = [];
+  let blocks = sortBlocks(findBlocks(levelMap));
+  // console.log(blocks);
+  while (blocks.length > 0) {
+    finalBlocks.push(blocks[0]);
+    removeBlock(levelMap, blocks[0]);
+    blocks = sortBlocks(findBlocks(levelMap)); // TODO: Should be done only if the new top block is missing Xs
+  }
 
   // Print blocks
   console.log(
-    blocks.map(block => {
+    finalBlocks.map(block => {
       const x = block.col ? HORIZONTAL_MARGINS + block.col * CELL_SIZE : 0;
       const y = block.row ? VERTICAL_MARGINS + block.row * CELL_SIZE : 0;
       let w = CELL_SIZE * block.width;
