@@ -1,15 +1,15 @@
-+-----------------------+
-|XX   XXX    VVVVVVVVVV |
-|   XXO   XX VVVVVVVVVV | 
-| X   X XX X            |
-| XX    XX XXXXXXXX    X|
-|  XXXXXX     X    X   X|
-|    X  X FFF X X  X X  |
-| X X   X FFF X XX   X X|
-| XO  X   FFF X   X X  X|
-| XXX X   FFF XXX X XX X|
-|       X FFF   X X    X|
-|XX  XX X FFF X X  XX   |
-|X    X X FFF X OXX     |
-|X PP X X     XX X  EE  |
-+-----------------------+
++----------------------------------------------+
+|X X - - - X X X - - - - V V V V V V V V V V - |
+|- - - X X O - - - X X - V V V V V V V V V V - |
+|- X - - - X - X X - X - - - - - - - - - - - - |
+|- X X - - - - X X - X X X X X X X X - - - - X |
+|- - X X X X X X - - - - - X - - - - X - - - X |
+|- - - - X - - X - F F F - X - X - - X - X - - |
+|- X - X - - - X - F F F - X - X X - - - X - X |
+|- X O - - X - - - F F F - X - - - X - X - - X |
+|- X X X - X - - - F F F - X X X - X - X X - X |
+|- - - - - - - X - F F F - - - X - X - - - - X |
+|X X - - X X - X - F F F - X - X - - X X - - - |
+|X - - - - X - X - F F F - X - O X X - - - - - |
+|X - P P - X - X - - - - - X X - X - - E E - - |
++----------------------------------------------+

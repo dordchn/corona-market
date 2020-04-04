@@ -14,7 +14,7 @@ const CELL_SIZE = 44;
 async function readLvlFile(path) {
   try {
     const text = await readFile(path, 'utf8');
-    return text.replace(/[\+\-\|]/g, '').split('\n').filter(f => f.length);
+    return text.replace(/[\ \|]/g, '').split('\n').filter(l=>l[0]!='+').filter(f => f.length);
 
   } catch (err) {
     console.log('Error', err);
@@ -52,7 +52,7 @@ function collectXsRows(mat, minLength) {
 function removeBlock(mat, block) {
   for (let i = block.row; i < block.row + block.height; i++) {
     mat[i] = mat[i].substring(0, block.col)
-      + ' '.repeat(block.width)
+      + '-'.repeat(block.width)
       + mat[i].substring(block.col + block.width);
   }
 }
@@ -73,7 +73,7 @@ async function main() {
   const levelPath = process.argv[2];
   let levelMap = await readLvlFile(levelPath);
 
-  console.log('input:', levelMap);
+  // console.log('input:', levelMap);
 
   const findBlocks = mat => {
     const transposedMat = transpose(mat);
@@ -102,5 +102,9 @@ async function main() {
   // Print blocks
   console.log(finalBlocks.map(blockToCode).join('\n'));
 }
+
+
+console.log(blockToCode({ row: 0, col: 13, width: 1, height: 1 }));
+console.log(blockToCode({ row: 5, col: 9, width: 1, height: 1 }));
 
 main();
