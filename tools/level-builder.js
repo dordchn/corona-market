@@ -117,18 +117,16 @@ async function main() {
   // console.log('input:', levelMap);
 
   console.log('\nitems: [')
-  const items = matUtil.findSymbol(levelMap, 'O');
+  const items = matUtil.findSymbol(levelMap, 'O').map(item => posToCoord(item.row, item.col));
   items.forEach(item => {
-    let coordinates = posToCoord(item.row, item.col);
-    console.log(`new Piece(${coordinates.x + CELL_SIZE / 2}, ${coordinates.y + CELL_SIZE / 2}, 40, 'res/imgs/items/paper.svg'),`);
+    console.log(`new Piece(${item.x + CELL_SIZE / 2}, ${item.y + CELL_SIZE / 2}, 40, 'res/imgs/items/paper.svg'),`);
   })
   console.log('],');
 
   console.log('viruses: [');
-  const viruses = matUtil.findSymbol(levelMap, 'C');
+  const viruses = matUtil.findSymbol(levelMap, 'C').map(virus => posToCoord(virus.row, virus.col));
   viruses.forEach(virus => {
-    let coordinates = posToCoord(virus.row, virus.col);
-    console.log(`new Piece(${coordinates.x + CELL_SIZE / 2}, ${coordinates.y + CELL_SIZE / 2}, 40, 'res/imgs/virus.svg'),`);
+    console.log(`new Piece(${virus.x + CELL_SIZE / 2}, ${virus.y + CELL_SIZE / 2}, 40, 'res/imgs/virus.svg'),`);
   });
   console.log('],');
 
@@ -142,5 +140,3 @@ async function main() {
 // console.log(blockToCode({ row: 5, col: 9, width: 1, height: 1 }));
 
 main();
-
-// import * as utils from './scripts/utils.js';
