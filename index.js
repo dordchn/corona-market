@@ -2,6 +2,7 @@ import level1 from './levels/level1.js';
 import level2 from './levels/level2.js';
 import level3 from './levels/level3.js';
 import level4 from './levels/level4.js';
+import level5 from './levels/level5.js';
 import level6 from './levels/level6.js';
 import sounds from './utils/sounds.js';
 
@@ -14,7 +15,7 @@ let topRow = document.querySelector('#top_row');
 let livesContainer = document.querySelector('#lives');
 let levelLabel = document.querySelector('#level_label');
 
-let levels = [level1, level2, level3, level4, level6];
+let levels = [level1, level2, level3, level4, level5, level6];
 let levelIndex = 0;
 
 let game = document.querySelector('x-game');

@@ -82,6 +82,7 @@ class Game extends HTMLElement {
       'res/imgs/buyer4-left.svg', 'res/imgs/buyer4-right.svg',
 
       // Items
+      'res/imgs/items/apple.svg',
       'res/imgs/items/avocado.svg',
       'res/imgs/items/bread.svg',
       'res/imgs/items/broccoli.svg',

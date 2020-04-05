@@ -11,7 +11,6 @@ export default () => {
     obstacles: [
       new Obstacle(80, 556, 120, 20, { color: 'black' }), // Entrance
       new Obstacle(934, 420, 30, 120, { color: '#ddd' }), // Desk
-
       new Obstacle(584, 0, 440, 80, { src: 'res/imgs/vegetables.png' }), // Vegetables
       new Obstacle(418, 226, 100, 300, { src: 'res/imgs/freezer-90.png' }), // Freezer
 
@@ -74,7 +73,7 @@ export default () => {
 
     ],
     customers: [],
-    seller: new Seller(990, 480), // Seller
-    exit: new Obstacle(844, 556, 120, 20, { color: 'black' }), // Exit
+    seller: new Seller(990, 480),
+    exit: new Obstacle(844, 556, 120, 20, { color: 'black' }),
   };
 };
