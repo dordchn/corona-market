@@ -75,7 +75,7 @@ function blockToCode(block) {
   if (block.col + block.width == MAP_WIDTH) w += HORIZONTAL_MARGINS;
   let h = CELL_SIZE * block.height;
   if (block.row == 0) h += VERTICAL_MARGINS;
-  if (block.row + block.row == MAP_HEIGHT) h += VERTICAL_MARGINS;
+  if (block.row + block.height == MAP_HEIGHT) h += VERTICAL_MARGINS;
   return `new Obstacle(${coordinates.x}, ${coordinates.y}, ${w}, ${h}),`;
 }
 
