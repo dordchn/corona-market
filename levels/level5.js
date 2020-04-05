@@ -41,7 +41,8 @@ export default () => {
     ],
     items: [
       new Piece(500, 506, 40, 'res/imgs/items/apple.svg'),
-      new Piece(954, 70, 40, 'res/imgs/items/paper.svg'),
+      new Piece(954, 70, 40, 'res/imgs/items/honey.svg'),
+      new Piece(30, 70, 40, 'res/imgs/items/broccoli.svg'),
     ],
     viruses: [
       new Piece(500, 303, 40, 'res/imgs/virus.svg'),
@@ -59,19 +60,19 @@ export default () => {
         { x: 122, y: 70 },
         { x: 122, y: 190 },
         { x: 22, y: 190 },
-      ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
+      ], 'res/imgs/buyer1-left.svg', 'res/imgs/buyer1-right.svg'),
       new Customer([
         { x: 220, y: 65 },
         { x: 220, y: 195 },
-      ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
+      ], 'res/imgs/buyer4-left.svg', 'res/imgs/buyer4-right.svg'),
       new Customer([
         { x: 370, y: 125 },
         { x: 630, y: 125 },
-      ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
+      ], 'res/imgs/buyer2-left.svg', 'res/imgs/buyer2-right.svg'),
       new Customer([
         { x: 315, y: 300 },
         { x: 315, y: 546 },
-      ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
+      ], 'res/imgs/buyer2-left.svg', 'res/imgs/buyer2-right.svg'),
       new Customer([
         { x: 685, y: 300 },
         { x: 685, y: 546 },
@@ -81,11 +82,11 @@ export default () => {
         { x: 884, y: 140 },
         { x: 954, y: 140 },
         { x: 884, y: 140 },
-      ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
+      ], 'res/imgs/buyer1-left.svg', 'res/imgs/buyer1-right.svg'),
       new Customer([
         { x: 785, y: 310 },
         { x: 960, y: 310 },
-      ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
+      ], 'res/imgs/buyer4-left.svg', 'res/imgs/buyer4-right.svg'),
     ],
     seller: new Seller(990, 480),
     exit: new Obstacle(844, 556, 120, 20, { color: 'black' }),
