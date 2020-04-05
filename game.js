@@ -15,26 +15,9 @@ class Game extends HTMLElement {
         canvas {
           border: 1px solid black;
         }
-        .signs-container {
-          visibility: hidden;
-          margin-top: 4px;
-          font-size: 22px;
-        }
-        .entrance {
-          float: left;
-          margin-left: 94px;
-        }
-        .exit {
-          float: right;
-          margin-right: 102px;
-        }
       </style>
       <div class="container">
         <canvas width="1024" height="576"></canvas>
-        <div class="signs-container">
-          <span class="entrance">Entrance</span>
-          <span class="exit">Exit</span>
-        </div>
       </div>
     `
       ;
@@ -48,7 +31,6 @@ class Game extends HTMLElement {
     this.prevLoopTime = null;
 
     this.requestId = null;
-    this.signs = this.shadowDOM.querySelector('.signs-container');
   }
 
   async init() {
@@ -119,13 +101,11 @@ class Game extends HTMLElement {
     this.active = false;
     this.ctx.fillStyle = this.floorPattern;
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    this.signs.style.visibility = 'hidden';
   }
 
   loadLevel(levelBuilder) {
     this.level = levelBuilder();
     this.active = true;
-    this.signs.style.visibility = 'visible';
 
     this.prevLoopTime = Date.now();
     this.mainLoop();

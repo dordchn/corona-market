@@ -149,3 +149,19 @@ a {
   line-height: 24px;
   margin: -2px 0 3px 0;
 }
+
+.signs-container {
+  display: inline-block;
+  width: 1024px;
+  visibility: hidden;
+  margin-top: 4px;
+  font-size: 22px;
+}
+.entrance {
+  float: left;
+  margin-left: 94px;
+}
+.exit {
+  float: right;
+  margin-right: 102px;
+}

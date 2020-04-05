@@ -14,6 +14,7 @@ let instructions = document.querySelector('#instructions');
 let topRow = document.querySelector('#top_row');
 let livesContainer = document.querySelector('#lives');
 let levelLabel = document.querySelector('#level_label');
+let signs = document.querySelector('.signs-container');
 
 let levels = [level1, level2, level3, level4, level5, level6];
 let levelIndex = 0;
@@ -62,6 +63,7 @@ game.addEventListener('loss', async evt => {
 
 function loadMenu() {
   game.reset();
+  signs.style.visibility = 'hidden';
   topRow.style.visibility = 'hidden';
   mainScreen.style.display = '';
   Array.from(livesContainer.children).forEach(life => life.classList.add('used'));
@@ -98,6 +100,7 @@ unmuteButton.addEventListener('click', function () {
 
 function loadLevel(levelIndex) {
   levelLabel.innerText = `Level ${levelIndex + 1}`;
+  signs.style.visibility = 'visible';
   game.loadLevel(levels[levelIndex]);
   sounds.playBackground();
 }
