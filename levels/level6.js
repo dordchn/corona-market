@@ -1,3 +1,4 @@
+import Entity from '../entities/entity.js';
 import Player from '../entities/player.js';
 import Obstacle from '../entities/obstacle.js';
 import Piece from '../entities/piece.js';
@@ -79,12 +80,14 @@ export default () => {
       new Piece(22, 376, 40, 'res/imgs/virus.svg'),
       new Piece(996, 420, 40, 'res/imgs/virus.svg'),
       new Piece(380, 464, 40, 'res/imgs/virus.svg'),
-      new Piece(72, 508, 40, 'res/imgs/virus.svg'),
       new Piece(336, 508, 40, 'res/imgs/virus.svg'),
       new Piece(996, 508, 40, 'res/imgs/virus.svg'),
       new Piece(732, 552, 40, 'res/imgs/virus.svg'),
     ],
     customers: [],
+    fluffs: [
+      new Entity(110, 440, 60, 60, 'res/imgs/closed.png'),
+    ],
     seller: new Seller(-40, -40), // No seller in this level
     exit: new Obstacle(844, 556, 120, 20, { color: 'black' }),
   };
