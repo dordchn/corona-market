@@ -10,8 +10,6 @@ export default () => {
     obstacles: [
       new Obstacle(80, 556, 120, 20, { color: 'black' }), // Entrance
       new Obstacle(934, 420, 30, 120, { color: '#ddd' }), // Desk
-      new Obstacle(320, 576 - 80, 400, 80, { src: 'res/imgs/vegetables-180.png' }), // Vegetables
-      new Obstacle(370, 50, 300, 100, { src: 'res/imgs/freezer.png' }), // Freezer
 
       // Vertical - Up
       new Obstacle(0, 0, 40, 576),
@@ -28,17 +26,16 @@ export default () => {
       new Obstacle(760, 0, 224, 40),
       new Obstacle(320, 260, 140, 40),
       new Obstacle(720 - 140, 260, 140, 40),
+
+      // Props
+      new Obstacle(370, 50, 300, 100, { src: 'res/imgs/freezer.png' }), // Freezer
+      new Obstacle(320, 576 - 80, 400, 80, { src: 'res/imgs/vegetables-180.png' }), // Vegetables
     ],
+    exit: new Obstacle(844, 556, 120, 20, { color: 'black' }), // Exit
     items: [
       new Piece(160, 40, 40, 'res/imgs/items/paper.svg'),
       new Piece(660, 490, 40, 'res/imgs/items/tomato.svg'),
       new Piece(870, 40, 40, 'res/imgs/items/juice.svg'),
-    ],
-    viruses: [
-      new Piece(360, 230, 40, 'res/imgs/virus.svg'),
-      new Piece(680, 330, 40, 'res/imgs/virus.svg'),
-      new Piece(800, 80, 40, 'res/imgs/virus.svg'),
-      new Piece(940, 80, 40, 'res/imgs/virus.svg'),
     ],
     customers: [
       new Customer([
@@ -56,7 +53,12 @@ export default () => {
         { x: 955, y: 160 },
       ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
     ],
-    seller: new Seller(990, 480),
-    exit: new Obstacle(844, 556, 120, 20, { color: 'black' }),
+    viruses: [
+      new Piece(360, 230, 40, 'res/imgs/virus.svg'),
+      new Piece(680, 330, 40, 'res/imgs/virus.svg'),
+      new Piece(800, 80, 40, 'res/imgs/virus.svg'),
+      new Piece(940, 80, 40, 'res/imgs/virus.svg'),
+    ],
+    seller: new Seller(990, 480), // Seller
   };
 };
