@@ -15,7 +15,7 @@ let topRow = document.querySelector('#top_row');
 let livesContainer = document.querySelector('#lives');
 let levelLabel = document.querySelector('#level_label');
 
-let levels = [level1, level2, level3, level4, level5, level6];
+let levels = [level6, level2, level3, level4, level5, level6];
 let levelIndex = 0;
 
 let game = document.querySelector('x-game');

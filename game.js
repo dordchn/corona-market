@@ -67,6 +67,7 @@ class Game extends HTMLElement {
       'res/imgs/vegetables-90.png',
       'res/imgs/vegetables-180.png',
       'res/imgs/virus.svg',
+      'res/imgs/closed.png',
 
       // Player
       'res/imgs/player.svg',
@@ -203,6 +204,12 @@ class Game extends HTMLElement {
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     // Draw entities
+    if (this.level.fluffs) {
+      for (let fluff of this.level.fluffs) {
+        fluff.render(this.ctx);
+      }
+    }
+
     for (let customer of this.level.customers) {
       customer.render(this.ctx);
     }
