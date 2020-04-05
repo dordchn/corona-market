@@ -152,16 +152,31 @@ a {
 
 .signs-container {
   display: inline-block;
+  position: relative;
   width: 1024px;
   visibility: hidden;
   margin-top: 4px;
   font-size: 22px;
+  margin-bottom: 20px;
 }
+
 .entrance {
-  float: left;
-  margin-left: 94px;
+  position: absolute;
+  left: 94px;
 }
+
 .exit {
-  float: right;
-  margin-right: 102px;
+  position: absolute;
+  right: 102px;
+}
+
+#back_button {
+  cursor: pointer;
+}
+
+#back_button img {
+  height: 14px;
+  vertical-align: bottom;
+  margin: 6px;
+  margin-right: 6px;
 }

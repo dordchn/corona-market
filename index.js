@@ -104,3 +104,12 @@ function loadLevel(levelIndex) {
   game.loadLevel(levels[levelIndex]);
   sounds.playBackground();
 }
+
+const backButton = document.querySelector('#back_button');
+backButton.addEventListener('click', () => {
+  sounds.stopBackground();
+  gtag('event', 'left', { 'event_category': 'Level', 'event_label': 'Level' + (levelIndex + 1) });
+  gtag('event', 'left', { 'event_category': 'Game', 'event_label': 'Level' + (levelIndex + 1) });
+  loadMenu();
+  levelIndex = 0;
+});
