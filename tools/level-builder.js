@@ -4,6 +4,7 @@
 const fs = require('fs');
 const util = require('util');
 const readFile = util.promisify(fs.readFile);
+const matUtil = require('./mat-utils.js');
 
 /** Summary:
  * HORIZONTAL_MARGINS * 2 + CELL_SIZE * MAP_WIDTH = 1024px
@@ -15,6 +16,7 @@ const VERTICAL_MARGINS = 2;
 const HORIZONTAL_MARGINS = 6;
 const CELL_SIZE = 44;
 
+// Loads the level's matrix from the given path.
 async function readLvlFile(path) {
   try {
     const text = await readFile(path, 'utf8');
@@ -26,17 +28,7 @@ async function readLvlFile(path) {
   }
 }
 
-function transpose(mat) {
-  const transposed = [];
-  for (let col = 0; col < mat[0].length; col++) {
-    transposed[col] = mat.map(row => row[col]).join('');
-  }
-  return transposed;
-}
-
-/**
- * Finds horizontal rows of Xs, and returns a list of blocks describing them.
- */
+// Finds horizontal rows of Xs, and returns a list of blocks describing them.
 function collectXsRows(mat, minLength) {
   const blocks = [];
   mat.forEach((row, i) => {
@@ -51,14 +43,6 @@ function collectXsRows(mat, minLength) {
     }
   });
   return blocks;
-}
-
-function removeBlock(mat, block) {
-  for (let i = block.row; i < block.row + block.height; i++) {
-    mat[i] = mat[i].substring(0, block.col)
-      + '-'.repeat(block.width)
-      + mat[i].substring(block.col + block.width);
-  }
 }
 
 function posToCoord(row, col) {
@@ -86,16 +70,16 @@ function generateBlocks(levelMat, preferVertical = true, longFirst = false) {
 
   if (!longFirst && !preferVertical) {
     const rowBlocks = collectXsRows(levelMat, 2);
-    rowBlocks.forEach(b => removeBlock(levelMat, b));
-    const transposedMat = transpose(levelMat);
+    rowBlocks.forEach(b => matUtil.fillBlock(levelMat, b, '-'));
+    const transposedMat = matUtil.transpose(levelMat);
     const colBlocks = collectXsRows(transposedMat, 1).map(transposeBlock);
     return [...rowBlocks, ...colBlocks];
 
   } else if (!longFirst && preferVertical) {
-    const transposedMat = transpose(levelMat);
+    const transposedMat = matUtil.transpose(levelMat);
     const colBlocks = collectXsRows(transposedMat, 2);
-    colBlocks.forEach(b => removeBlock(transposedMat, b));
-    levelMat = transpose(transposedMat);
+    colBlocks.forEach(b => matUtil.fillBlock(transposedMat, b, '-'));
+    levelMat = matUtil.transpose(transposedMat);
     const rowBlocks = collectXsRows(levelMat, 1);
     return [...rowBlocks, ...colBlocks.map(transposeBlock)];
   }
@@ -103,7 +87,7 @@ function generateBlocks(levelMat, preferVertical = true, longFirst = false) {
   // Long first
   const preferVerticalCoeff = preferVertical ? 1 : -1;
   const findBlocks = mat => {
-    const transposedMat = transpose(mat);
+    const transposedMat = matUtil.transpose(mat);
     const rowBlocks = collectXsRows(mat, 1);
     const colBlocks = collectXsRows(transposedMat, 2).map(transposeBlock);
     return [...rowBlocks, ...colBlocks];
@@ -119,23 +103,11 @@ function generateBlocks(levelMat, preferVertical = true, longFirst = false) {
   let blocks = sortBlocks(findBlocks(levelMat));
   while (blocks.length > 0) {
     finalBlocks.push(blocks[0]);
-    removeBlock(levelMat, blocks[0]);
+    matUtil.fillBlock(levelMat, blocks[0], '-');
     blocks = sortBlocks(findBlocks(levelMat)); // TODO: Should be done only if the new top block is missing Xs
     // console.log(blocks);
   }
   return finalBlocks;
-}
-
-function findPieces(mat, symbol) {
-  const pieces = [];
-  mat.forEach((row, i) => {
-    const r = new RegExp(symbol, 'g');
-    let match;
-    while (match = r.exec(row)) {
-      pieces.push({ row: i, col: match.index });
-    }
-  });
-  return pieces;
 }
 
 async function main() {
@@ -144,19 +116,21 @@ async function main() {
 
   // console.log('input:', levelMap);
 
-  console.log('// Items: ')
-  const items = findPieces(levelMap, 'O');
+  console.log('\nitems: [')
+  const items = matUtil.findSymbol(levelMap, 'O');
   items.forEach(item => {
     let coordinates = posToCoord(item.row, item.col);
     console.log(`new Piece(${coordinates.x + CELL_SIZE / 2}, ${coordinates.y + CELL_SIZE / 2}, 40, 'res/imgs/items/paper.svg'),`);
   })
+  console.log('],');
 
-  console.log('// Viruses: ')
-  const viruses = findPieces(levelMap, 'C');
+  console.log('viruses: [');
+  const viruses = matUtil.findSymbol(levelMap, 'C');
   viruses.forEach(virus => {
     let coordinates = posToCoord(virus.row, virus.col);
     console.log(`new Piece(${coordinates.x + CELL_SIZE / 2}, ${coordinates.y + CELL_SIZE / 2}, 40, 'res/imgs/virus.svg'),`);
-  })
+  });
+  console.log('],');
 
   console.log('\n// Obstacles:');
   const blocks = generateBlocks(levelMap, /*preferVertical = */false, /*longFirst = */true);
@@ -168,3 +142,5 @@ async function main() {
 // console.log(blockToCode({ row: 5, col: 9, width: 1, height: 1 }));
 
 main();
+
+// import * as utils from './scripts/utils.js';
