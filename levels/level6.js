@@ -1,8 +1,9 @@
 import Player from '../entities/player.js';
 import Obstacle from '../entities/obstacle.js';
 import Piece from '../entities/piece.js';
-import Customer from '../entities/customer.js';
 import Seller from '../entities/seller.js';
+
+// Rendered from './level4.lvl'
 
 export default () => {
   return {
@@ -10,69 +11,68 @@ export default () => {
     obstacles: [
       new Obstacle(80, 556, 120, 20, { color: 'black' }), // Entrance
       new Obstacle(934, 420, 30, 120, { color: '#ddd' }), // Desk
-      new Obstacle(312 + 6, 0, 400, 80, { src: 'res/imgs/vegetables.png' }), // Vegetables
-      new Obstacle(458, 226, 100, 300, { src: 'res/imgs/freezer-90.png' }), // Freezer
+      new Obstacle(584, 0, 440, 80, { src: 'res/imgs/vegetables.png' }), // Vegetables
+      new Obstacle(418, 226, 100, 300, { src: 'res/imgs/freezer-90.png' }), // Freezer
 
-      // Vertical
-      new Obstacle(0, 0, 40, 576),
-      new Obstacle(240, 160, 40, 576 - 160),
-      new Obstacle(488, 80, 40, 280),
-      new Obstacle(744, 160, 40, 576 - 160),
-      new Obstacle(984, 0, 40, 400),
-
-      // Horizontal
-      new Obstacle(40, 0, 278, 40),
-      new Obstacle(718, 0, 266, 40),
+      new Obstacle(578, 134, 220, 44),
+      new Obstacle(534, 354, 176, 44),
+      new Obstacle(94, 354, 176, 44),
+      new Obstacle(182, 266, 176, 44),
+      new Obstacle(974, 266, 50, 176),
+      new Obstacle(446, 0, 44, 178),
+      new Obstacle(314, 354, 44, 176),
+      new Obstacle(0, 398, 50, 176),
+      new Obstacle(50, 178, 132, 44),
+      new Obstacle(886, 222, 44, 132),
+      new Obstacle(754, 310, 44, 132),
+      new Obstacle(578, 442, 44, 132),
+      new Obstacle(314, 134, 44, 132),
+      new Obstacle(226, 442, 44, 132),
+      new Obstacle(182, 0, 44, 134),
+      new Obstacle(0, 0, 50, 134),
+      new Obstacle(710, 486, 88, 44),
+      new Obstacle(798, 442, 88, 44),
+      new Obstacle(666, 266, 88, 44),
+      new Obstacle(50, 266, 88, 44),
+      new Obstacle(754, 178, 88, 44),
+      new Obstacle(974, 134, 50, 88),
+      new Obstacle(842, 310, 44, 88),
+      new Obstacle(666, 398, 44, 88),
+      new Obstacle(270, 46, 44, 88),
+      new Obstacle(622, 530, 44, 44),
+      new Obstacle(358, 486, 44, 44),
+      new Obstacle(182, 442, 44, 44),
+      new Obstacle(50, 442, 44, 44),
+      new Obstacle(182, 310, 44, 44),
+      new Obstacle(534, 266, 44, 44),
+      new Obstacle(798, 222, 44, 44),
+      new Obstacle(666, 222, 44, 44),
+      new Obstacle(578, 178, 44, 44),
+      new Obstacle(270, 178, 44, 44),
+      new Obstacle(490, 134, 44, 44),
+      new Obstacle(402, 134, 44, 44),
+      new Obstacle(94, 134, 44, 44),
+      new Obstacle(490, 46, 44, 44),
+      new Obstacle(358, 46, 44, 44),
+      new Obstacle(138, 46, 44, 44),
     ],
     items: [
-      new Piece(70, 70, 40, 'res/imgs/items/broccoli.svg'),
-      new Piece(724, 380, 40, 'res/imgs/items/juice.svg'),
-      new Piece(954, 60, 40, 'res/imgs/items/bread.svg'),
+      new Piece(248, 22, 40, 'res/imgs/items/paper.svg'),
+      new Piece(732, 104, 40, 'res/imgs/items/carrot.svg'),
+      new Piece(292, 244, 40, 'res/imgs/items/bread.svg'),
+      new Piece(732, 200, 40, 'res/imgs/items/avocado.svg'),
+      new Piece(732, 420, 40, 'res/imgs/items/milk.svg'),
+      new Piece(688, 508, 40, 'res/imgs/items/juice.svg'),
+
     ],
     viruses: [
-      // Left
-      new Piece(310, 260, 40, 'res/imgs/virus.svg'),
-      new Piece(426, 260, 40, 'res/imgs/virus.svg'),
-      new Piece(368, 375, 40, 'res/imgs/virus.svg'),
-      new Piece(310, 490, 40, 'res/imgs/virus.svg'),
-      new Piece(426, 490, 40, 'res/imgs/virus.svg'),
-      // Right
-      new Piece(810, 180, 40, 'res/imgs/virus.svg'),
-      new Piece(855, 180, 40, 'res/imgs/virus.svg'),
-      new Piece(870, 280, 40, 'res/imgs/virus.svg'),
-      new Piece(915, 280, 40, 'res/imgs/virus.svg'),
-      new Piece(960, 280, 40, 'res/imgs/virus.svg'),
-      new Piece(810, 380, 40, 'res/imgs/virus.svg'),
-      new Piece(855, 380, 40, 'res/imgs/virus.svg'),
+      new Piece(248, 68, 40, 'res/imgs/virus.svg'),
+      new Piece(644, 112, 40, 'res/imgs/virus.svg'),
+      new Piece(820, 332, 40, 'res/imgs/virus.svg'),
+      new Piece(732, 552, 40, 'res/imgs/virus.svg'),
+
     ],
-    customers: [
-      // Left column
-      new Customer([
-        { x: 80, y: 450 },
-        { x: 200, y: 450 },
-      ], 'res/imgs/buyer1-left.svg', 'res/imgs/buyer1-right.svg'),
-      new Customer([
-        { x: 200, y: 350 },
-        { x: 80, y: 350 },
-      ], 'res/imgs/buyer2-left.svg', 'res/imgs/buyer2-right.svg'),
-      new Customer([
-        { x: 80, y: 250 },
-        { x: 200, y: 250 },
-      ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
-      // Right column
-      new Customer([
-        { x: 704, y: 280 },
-        { x: 584, y: 280 },
-      ], 'res/imgs/buyer4-left.svg', 'res/imgs/buyer4-right.svg'),
-      new Customer([
-        { x: 584, y: 380 },
-        { x: 704, y: 380 },
-      ], 'res/imgs/buyer1-left.svg', 'res/imgs/buyer1-right.svg'),
-      new Customer([
-        { x: 704, y: 480 },
-        { x: 584, y: 480 },
-      ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
-    ],
+    customers: [],
     seller: new Seller(990, 480),
     exit: new Obstacle(844, 556, 120, 20, { color: 'black' }),
   };
