@@ -8,6 +8,7 @@ class Player {
     this.rotation = rotation;
     this.size = 40;
     this.speed = 150;
+    this.sick = false;
   }
 
   getBoundingBox() {
@@ -67,8 +68,19 @@ class Player {
     }
   }
 
+  toggleSick() {
+    this.sick = !this.sick;
+  }
+
   render(context) {
     context.save();
+    if (this.sick) {
+      context.beginPath();
+      context.fillStyle = 'rgba(0, 180, 0, 0.4)';
+      context.arc(this.x, this.y, 50, 0, 2 * Math.PI);
+      context.fill();
+    }
+
     context.translate(this.x, this.y);
     context.rotate(this.rotation * Math.PI / 180);
     let img = resources.get(this.res);

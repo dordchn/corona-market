@@ -2,6 +2,8 @@ import resources from './utils/resources.js';
 import sounds from './utils/sounds.js';
 import { boxCollides, boxContains, arcCollides } from './utils/collision.js';
 
+const delay = t => new Promise(res => setTimeout(res, t));
+
 class Game extends HTMLElement {
   constructor() {
     super();
@@ -167,6 +169,7 @@ class Game extends HTMLElement {
       if (arcCollides(this.level.player.getBoundingArc(), customer.getInfectingArea())) {
         this.stop();
         this.dispatchEvent(new CustomEvent('loss', { detail: { cough: true } }));
+        this.playerBlinkSick();
         break;
       }
     }
@@ -174,6 +177,7 @@ class Game extends HTMLElement {
       if (arcCollides(this.level.player.getBoundingArc(), virus.getBoundingArc())) {
         this.stop();
         this.dispatchEvent(new CustomEvent('loss', { detail: { cough: false } }));
+        this.playerBlinkSick();
         break;
       }
     }
@@ -222,6 +226,14 @@ class Game extends HTMLElement {
 
   stop() {
     this.active = false;
+  }
+
+  async playerBlinkSick() {
+    for (let i = 0; i < 3; i++) {
+      await delay(300);
+      this.level.player.toggleSick();
+      this.render();
+    }
   }
 }
 
