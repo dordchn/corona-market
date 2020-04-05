@@ -5,6 +5,10 @@ const fs = require('fs');
 const util = require('util');
 const readFile = util.promisify(fs.readFile);
 
+/** Summary:
+ * HORIZONTAL_MARGINS * 2 + CELL_SIZE * MAP_WIDTH = 1024px
+ * VERTICAL_MARGINS * 2 + CELL_SIZE * MAP_HEIGHT = 576px
+ */
 const MAP_WIDTH = 23;
 const MAP_HEIGHT = 13;
 const VERTICAL_MARGINS = 2;
@@ -128,7 +132,7 @@ function findPieces(mat, symbol) {
     const r = new RegExp(symbol, 'g');
     let match;
     while (match = r.exec(row)) {
-      pieces.push({row:i, col: match.index});
+      pieces.push({ row: i, col: match.index });
     }
   });
   return pieces;
