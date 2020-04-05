@@ -122,24 +122,39 @@ function generateBlocks(levelMat, preferVertical = true, longFirst = false) {
   return finalBlocks;
 }
 
+function findPieces(mat, symbol) {
+  const pieces = [];
+  mat.forEach((row, i) => {
+    const r = new RegExp(symbol, 'g');
+    let match;
+    while (match = r.exec(row)) {
+      pieces.push({row:i, col: match.index});
+    }
+  });
+  return pieces;
+}
+
 async function main() {
   const levelPath = process.argv[2];
   let levelMap = await readLvlFile(levelPath);
 
   // console.log('input:', levelMap);
 
-  // Print items
-  levelMap.forEach((row, i) => {
-    const r = /O/g;
-    let match;
-    while (match = r.exec(row)) {
-      const coordinates = posToCoord(i, match.index);
-      console.log(`new Piece(${coordinates.x + CELL_SIZE / 2}, ${coordinates.y + CELL_SIZE / 2}, 40, 'res/imgs/items/paper.svg'),`);
-    }
-  });
-  console.log('');
+  console.log('// Items: ')
+  const items = findPieces(levelMap, 'O');
+  items.forEach(item => {
+    let coordinates = posToCoord(item.row, item.col);
+    console.log(`new Piece(${coordinates.x + CELL_SIZE / 2}, ${coordinates.y + CELL_SIZE / 2}, 40, 'res/imgs/items/paper.svg'),`);
+  })
 
-  // Print blocks
+  console.log('// Viruses: ')
+  const viruses = findPieces(levelMap, 'C');
+  viruses.forEach(virus => {
+    let coordinates = posToCoord(virus.row, virus.col);
+    console.log(`new Piece(${coordinates.x + CELL_SIZE / 2}, ${coordinates.y + CELL_SIZE / 2}, 40, 'res/imgs/virus.svg'),`);
+  })
+
+  console.log('\n// Obstacles:');
   const blocks = generateBlocks(levelMap, /*preferVertical = */false, /*longFirst = */true);
   console.log(blocks.map(blockToCode).join('\n'));
 
