@@ -23,7 +23,7 @@ let levelIndex = 0;
 
 let game = document.querySelector('x-game');
 game.init().then(() => {
-  mainScreen.style.display = '';
+  mainScreen.style.visibility = '';
   loadingMessage.style.display = 'none';
 });
 
