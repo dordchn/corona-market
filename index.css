@@ -45,14 +45,21 @@ x-game {
 #main_screen {
   position: absolute;
   width: 100%;
-  padding-top: 200px;
   text-align: center;
+}
+
+#win_message {
+  margin-top: 50px;
+  font-size: 80px;
+  line-height: 92px;
+  visibility: hidden;
 }
 
 #start_button {
   display: inline-block;
   --width: 260px;
   width: var(--width);
+  margin-top: 58px;
   padding: 8px 0;
   background-color: #7ce96d;
   border: 1px solid black;
@@ -61,12 +68,12 @@ x-game {
   color: #333;
   font-size: 70px;
   cursor: pointer;
-  margin-bottom: 45px;
   letter-spacing: 2px;
 }
 
 #howto_button {
   display: inline-block;
+  margin-top: 45px;
   font-size: 24px;
   letter-spacing: 1px;
   cursor: pointer;
