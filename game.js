@@ -213,11 +213,12 @@ class Game extends HTMLElement {
     for (let customer of this.level.customers) {
       customer.render(this.ctx);
     }
+
+    this.level.player.render(this.ctx);
+
     for (let virus of this.level.viruses) {
       virus.render(this.ctx);
     }
-
-    this.level.player.render(this.ctx);
 
     for (let obstacle of this.level.obstacles) {
       obstacle.render(this.ctx);
