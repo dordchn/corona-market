@@ -6,6 +6,8 @@ import level5 from './levels/level5.js';
 import level6 from './levels/level6.js';
 import sounds from './utils/sounds.js';
 
+const delay = t => new Promise(res => setTimeout(res, t));
+
 const loadingMessage = document.querySelector('#loading');
 const mainScreen = document.querySelector('#main_screen');
 const startButton = document.querySelector('#start_button');
@@ -47,11 +49,15 @@ game.addEventListener('loss', async evt => {
   gtag('event', 'loss', { 'event_category': 'Level', 'event_label': 'Level' + (levelIndex + 1) });
   let lives = livesContainer.querySelectorAll('img:not(.used)');
   sounds.stopBackground();
-  if (evt.detail.cough && lives.length > 0) {
-    await sounds.play('res/sounds/cough-boy9.mp3');
-  }
   if (lives.length > 0) {
-    await sounds.play('res/sounds/life.mp3', 0.7);
+    if (evt.detail.cough) {
+      await sounds.play('res/sounds/cough-boy9.mp3');
+      await sounds.play('res/sounds/life.mp3', 0.7);
+    } else {
+      await sounds.play('res/sounds/life.mp3', 0.7);
+      await delay(800);
+    }
+    
     lives[0].classList.add('used');
     loadLevel(levelIndex);
   } else {
