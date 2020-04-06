@@ -16,7 +16,7 @@ export default () => {
       // Vertical
       new Obstacle(0, 0, 40, 576),
       new Obstacle(240, 160, 40, 576 - 160),
-      new Obstacle(488, 80, 40, 280),
+      new Obstacle(488, 80, 40, 146),
       new Obstacle(744, 160, 40, 576 - 160),
       new Obstacle(984, 0, 40, 400),
 
