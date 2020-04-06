@@ -19,7 +19,7 @@ const levelLabel = document.querySelector('#level_label');
 const winMessage = document.querySelector('#win_message');
 
 const levels = [level1, level2, level3, level4, level5, level6];
-let levelIndex = 5;
+let levelIndex = 0;
 
 let game = document.querySelector('x-game');
 game.init().then(() => {
