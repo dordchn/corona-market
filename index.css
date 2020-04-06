@@ -59,7 +59,7 @@ x-game {
   display: inline-block;
   --width: 260px;
   width: var(--width);
-  margin-top: 68px;
+  margin-top: 50px;
   padding: 8px 0;
   background-color: #7ce96d;
   border: 1px solid black;
@@ -73,7 +73,7 @@ x-game {
 
 #howto_button {
   display: inline-block;
-  margin-top: 38px;
+  margin-top: 18px;
   font-size: 24px;
   letter-spacing: 1px;
   cursor: pointer;
@@ -81,7 +81,7 @@ x-game {
 
 #instructions {
   display: inline-block;
-  margin-top: 12px;
+  margin-top: 16px;
   border-radius: 12px;
   background-color: #0009;
   opacity: 0;
