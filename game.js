@@ -77,6 +77,7 @@ class Game extends HTMLElement {
       // Seller
       'res/imgs/seller.svg',
       'res/imgs/seller-forget.png',
+      'res/imgs/seller-goodbye.png',
 
       // Buyers
       'res/imgs/buyer1-left.svg', 'res/imgs/buyer1-right.svg',
@@ -188,6 +189,10 @@ class Game extends HTMLElement {
       if (this.level.items.length == 0) {
         this.stop();
         this.dispatchEvent(new CustomEvent('win'));
+        delay(200).then(() => {
+          this.level.seller.showPopup('res/imgs/seller-goodbye.png', -10);
+          this.render();
+        });
       } else if (!this.level.exit.touching) {
         sounds.play('res/sounds/illegal.mp3');
         this.level.seller.showPopup('res/imgs/seller-forget.png', 30);
