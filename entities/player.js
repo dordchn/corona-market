@@ -7,6 +7,7 @@ class Player {
     this.y = y;
     this.rotation = rotation;
     this.size = 38; // A bit smaller than the player's assets (40x40)
+    this.arcSize = 17;
     this.speed = 150;
     this.sick = false;
 
@@ -28,7 +29,7 @@ class Player {
     return {
       x: this.x,
       y: this.y,
-      r: this.size * 0.4,
+      r: this.arcSize,
     };
   }
 
