@@ -2,13 +2,18 @@ import keyboard from '../utils/keyboard.js';
 import resources from '../utils/resources.js';
 
 class Player {
-  constructor(x, y, rotation) {
+  constructor(x, y, rotation, options = {}) {
     this.x = x;
     this.y = y;
     this.rotation = rotation;
     this.size = 38; // A bit smaller than the player's assets (40x40)
+    this.arcSize = 17;
     this.speed = 150;
     this.sick = false;
+
+    for (const key in options) {
+      this[key] = options[key];
+    }
   }
 
   getBoundingBox() {
@@ -24,7 +29,7 @@ class Player {
     return {
       x: this.x,
       y: this.y,
-      r: this.size * 0.4,
+      r: this.arcSize,
     };
   }
 
