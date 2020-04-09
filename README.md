@@ -3,7 +3,7 @@ CoronaMarket is an open source game created during the coronavirus pandemic.
 The goal of the game is to buy groceries without getting infected with the virus.  
 
 ## How to play
-The game is available **[here](http://coronavirus.cc)**.  
+The game is available **[here](http://coronamarket.cc)**.  
 To play locally, clone the repository and start a local server (e.g. `python -m SimpleHTTPServer`).
 
 ## Screenshots
