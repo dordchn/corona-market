@@ -8,7 +8,7 @@ import Seller from '../entities/seller.js';
 
 export default () => {
   return {
-    player: new Player(/*x=*/ 140, /*y=*/ 530, /*rotation=*/ 0),
+    player: new Player(/*x=*/ 140, /*y=*/ 530, /*rotation=*/ 0, {size: 36, speed: 140}), // Small BB size & lower speed to allow easier navigation
     obstacles: [
       new Obstacle(80, 556, 120, 20, { color: 'black' }), // Entrance
       new Obstacle(934, 420, 30, 120, { color: '#ddd' }), // Desk
@@ -58,12 +58,12 @@ export default () => {
       new Obstacle(138, 46, 44, 44),
     ],
     items: [
-      new Piece(248, 22, 40, 'res/imgs/items/paper.svg'),
-      new Piece(732, 104, 40, 'res/imgs/items/carrot.svg'),
-      new Piece(292, 244, 40, 'res/imgs/items/bread.svg'),
-      new Piece(732, 200, 40, 'res/imgs/items/avocado.svg'),
-      new Piece(732, 420, 40, 'res/imgs/items/milk.svg'),
-      new Piece(688, 508, 40, 'res/imgs/items/juice.svg'),
+      // new Piece(248, 22, 40, 'res/imgs/items/paper.svg'),
+      // new Piece(732, 104, 40, 'res/imgs/items/carrot.svg'),
+      // new Piece(292, 244, 40, 'res/imgs/items/bread.svg'),
+      // new Piece(732, 200, 40, 'res/imgs/items/avocado.svg'),
+      // new Piece(732, 420, 40, 'res/imgs/items/milk.svg'),
+      // new Piece(688, 508, 40, 'res/imgs/items/juice.svg'),
 
     ],
     viruses: [
