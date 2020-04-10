@@ -57,7 +57,7 @@ game.addEventListener('loss', async evt => {
       await sounds.play('res/sounds/life.mp3', 0.7);
       await delay(800);
     }
-    
+
     lives[0].classList.add('used');
     loadLevel(levelIndex);
   } else {
@@ -76,14 +76,19 @@ function loadMenu() {
 }
 
 startButton.addEventListener('click', async () => {
-  if (game.ready) {
-    gtag('event', 'start', { 'event_category': 'Game' });
-    Array.from(livesContainer.children).forEach(life => life.classList.remove('used'));
-    mainScreen.style.display = 'none';
-    winMessage.style.visibility = '';
-    loadLevel(levelIndex);
-    topRow.style.visibility = 'visible';
+  if (!game.ready) {
+    return;
   }
+  if (window.levelIndex) { // Allow changing the level from developer console
+    levelIndex = window.levelIndex;
+    window.levelIndex = undefined;
+  }
+  gtag('event', 'start', { 'event_category': 'Game' });
+  Array.from(livesContainer.children).forEach(life => life.classList.remove('used'));
+  mainScreen.style.display = 'none';
+  winMessage.style.visibility = '';
+  loadLevel(levelIndex);
+  topRow.style.visibility = 'visible';
 });
 
 howtoButton.addEventListener('click', () => {
