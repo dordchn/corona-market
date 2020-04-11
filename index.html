@@ -27,6 +27,8 @@
   </script>
   <!-- ShareThis -->
   <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e8a75e67759b60019731866&product=inline-share-buttons&cms=website' async='async'></script>
+  <!-- Github -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 
 <body>
@@ -74,7 +76,17 @@
   </div>
 
   <div class="credits">
-    <div>Created by <a href="https://www.linkedin.com/in/dor-cohen-ab55a463/" target="_blank" onclick="gtag('event', 'click', { 'event_category': 'Credit' });">Dor Cohen</a></div>
+    <div>
+      <span onclick="gtag('event', 'click', { 'event_category': 'Credit', 'event_label': 'github-follow' });">
+        <a class="github-button" href="https://github.com/dordchn" data-size="large" aria-label="Follow @dordchn on GitHub">Follow @dordchn</a>
+      </span>
+      <span onclick="gtag('event', 'click', { 'event_category': 'Credit', 'event_label': 'github-star' });">
+        <a class="github-button" href="https://github.com/dordchn/CoronaMarket" data-icon="octicon-star" data-size="large" aria-label="Star dordchn/CoronaMarket on GitHub">Star</a>
+      </span>
+      <span onclick="gtag('event', 'click', { 'event_category': 'Credit', 'event_label': 'github-issue' });">
+        <a class="github-button" href="https://github.com/dordchn/CoronaMarket/issues" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue dordchn/CoronaMarket on GitHub">Issue</a>
+      </span>
+    </div>
     <div>Sound effects & music obtained from <a href="https://www.zapsplat.com" target="_blank">zapsplat</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik" target="_blank">Freepik</a> from <a
         href="https://www.flaticon.com/" title="Flaticon" target="_blank">www.flaticon.com</a></div>
