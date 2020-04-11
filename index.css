@@ -59,7 +59,7 @@ x-game {
   display: inline-block;
   --width: 260px;
   width: var(--width);
-  margin-top: 50px;
+  margin-top: 28px;
   padding: 8px 0;
   background-color: #7ce96d;
   border: 1px solid black;
@@ -71,9 +71,24 @@ x-game {
   letter-spacing: 2px;
 }
 
+.choose-level {
+  margin-top: 10px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #0009;
+}
+
+#levels_selector {
+  height: 1.6em;
+  background: #efeffe;
+  border-radius: 4px;
+  width: 100px;
+  vertical-align: bottom;
+}
+
 #howto_button {
   display: inline-block;
-  margin-top: 18px;
+  margin-top: 8px;
   font-size: 24px;
   letter-spacing: 1px;
   cursor: pointer;
