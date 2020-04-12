@@ -37,8 +37,8 @@ export default () => {
     viruses: [
       new Piece(360, 230, 40, 'res/imgs/virus.svg'),
       new Piece(680, 330, 40, 'res/imgs/virus.svg'),
-      new Piece(800, 80, 40, 'res/imgs/virus.svg'),
-      new Piece(940, 80, 40, 'res/imgs/virus.svg'),
+      new Piece(798, 78, 40, 'res/imgs/virus.svg'),
+      new Piece(942, 78, 40, 'res/imgs/virus.svg'),
     ],
     customers: [
       new Customer([
@@ -52,8 +52,8 @@ export default () => {
         { x: 240, y: 260 },
       ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
       new Customer([
-        { x: 785, y: 160 },
-        { x: 955, y: 160 },
+        { x: 785, y: 158 },
+        { x: 955, y: 158 },
       ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
     ],
     seller: new Seller(990, 480),
