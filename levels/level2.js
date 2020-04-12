@@ -49,7 +49,7 @@ export default () => {
         { x: 370, y: 70 },
       ], 'res/imgs/buyer3-left.svg', 'res/imgs/buyer3-right.svg'),
       new Customer([
-        { x: 910, y: 120 },
+        { x: 910, y: 110 },
         { x: 910, y: 320 },
       ], 'res/imgs/buyer1-left.svg', 'res/imgs/buyer1-right.svg'),
     ],
