@@ -1,3 +1,4 @@
+import controller from '../utils/controller.js';
 import resources from './utils/resources.js';
 import sounds from './utils/sounds.js';
 import { boxCollides, boxContains, arcCollides } from './utils/collision.js';
@@ -121,6 +122,7 @@ class Game extends HTMLElement {
 
   reset() {
     this.active = false;
+    controller.stop();
     this.ctx.fillStyle = this.floorPattern;
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     this.signs.style.visibility = 'hidden';
@@ -129,6 +131,7 @@ class Game extends HTMLElement {
   loadLevel(levelBuilder) {
     this.level = levelBuilder();
     this.active = true;
+    controller.start();
     this.signs.style.visibility = 'visible';
 
     this.prevLoopTime = Date.now();
@@ -239,6 +242,7 @@ class Game extends HTMLElement {
 
   stop() {
     this.active = false;
+    controller.stop();
   }
 
   async playerBlinkSick() {

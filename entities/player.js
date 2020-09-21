@@ -1,4 +1,4 @@
-import keyboard from '../utils/keyboard.js';
+import controller from '../utils/controller.js';
 import resources from '../utils/resources.js';
 
 class Player {
@@ -37,11 +37,11 @@ class Player {
     let newPos = null;
     let dirKey = null;
 
-    let recentKey = keyboard.getRecentDown();
+    let recentKey = controller.getRecentDown();
     if (recentKey && recentKey.substr(0, 5) == "Arrow") {
       dirKey = recentKey;
     } else {
-      dirKey = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].find(key => keyboard.isDown(key));
+      dirKey = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].find(key => controller.isDown(key));
     }
 
     if (dirKey == 'ArrowUp') {
